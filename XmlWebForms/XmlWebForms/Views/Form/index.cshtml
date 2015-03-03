@@ -1,0 +1,120 @@
+﻿@model dotacia
+
+@{
+    ViewBag.Title = "index";
+}
+
+<h2>index</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>dotacia</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.nazovFirmy)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.nazovFirmy)
+            @Html.ValidationMessageFor(model => model.nazovFirmy)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.pravnaForma)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.pravnaForma)
+            @Html.ValidationMessageFor(model => model.pravnaForma)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ico)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ico)
+            @Html.ValidationMessageFor(model => model.ico)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.dic)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.dic)
+            @Html.ValidationMessageFor(model => model.dic)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.telefon)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.telefon)
+            @Html.ValidationMessageFor(model => model.telefon)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.email)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.email)
+            @Html.ValidationMessageFor(model => model.email)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.adresa)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.adresa)
+            @Html.ValidationMessageFor(model => model.adresa)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.mesto)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.mesto)
+            @Html.ValidationMessageFor(model => model.mesto)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.okres)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.okres)
+            @Html.ValidationMessageFor(model => model.okres)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.kraj)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.kraj)
+            @Html.ValidationMessageFor(model => model.kraj)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.psc)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.psc)
+            @Html.ValidationMessageFor(model => model.psc)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ziadanaSuma)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ziadanaSuma)
+            @Html.ValidationMessageFor(model => model.ziadanaSuma)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
