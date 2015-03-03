@@ -41,3 +41,7 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
+
+XmlWebForms/XmlWebForms/bin/Newtonsoft.Json.xml
+XmlWebForms/XmlWebForms/bin/System.Web.Helpers.xml
+XmlWebForms/XmlWebForms/bin/System.Web.Mvc.xml

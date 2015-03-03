@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" version="1.0" elementFormDefault="qualified">
+	<xsd:element name="dotacia" >
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="nazovFirmy" type="xsd:string"/>
+				<xsd:element name="pravnaForma" type="xsd:string"/>
+				<xsd:element name="ico" type="xsd:integer"/>
+				<xsd:element name="dic" type="xsd:integer"/>
+				<xsd:element name="telefon" type="xsd:string"/>
+				<xsd:element name="email" type="xsd:string"/>
+				
+				<xsd:element name="adresa" type="xsd:string"/>
+				<xsd:element name="mesto" type="xsd:string"/>
+				<xsd:element name="okres" type="xsd:string"/>
+				<xsd:element name="kraj" type="xsd:string"/>
+				<xsd:element name="psc" type="xsd:integer"/>
+				
+				<xsd:element name="ziadanaSuma" type="xsd:decimal"/>
+			
+				<xsd:element name="naklady" minOccurs="1" maxOccurs="unbounded" type="nakladyType"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	
+	<xsd:complexType name="nakladyType">
+		<xsd:sequence>
+			<xsd:element name="polozka" type="xsd:string"/>
+			<xsd:element name="cena" type="xsd:decimal"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	
+	
+
+		
+</xsd:schema>
