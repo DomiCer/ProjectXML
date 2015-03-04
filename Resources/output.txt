@@ -1,0 +1,25 @@
+﻿
+DOTACIA NA KULTURU
+******************
+
+Názov firmy: nazov
+Pravna forma: a.s.
+ICO: 123
+DIC: 123
+Telefon: 0915 423 327
+e-mail: jozef.mrkva@gmail.com
+Adresa: adresa
+Mesto: Dubnica nad Vahom
+Okres: Ilava
+Kraj: Trenciansky
+PSC: 01841
+
+Ziadana suma: 100000 €
+
+NAKLADY:
+___________________________________________________
+
+  polozka_1 : 10000 €
+  polozka_2 : 20000 €
+  polozka_3 : 70000 €
+  
