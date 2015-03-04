@@ -1,7 +1,6 @@
 C:\D\Skola\STUBA\2roc\Letny\SISS\Project\ProjectXML\XmlWebForms\XmlWebForms\bin\XmlWebForms.dll
 C:\D\Skola\STUBA\2roc\Letny\SISS\Project\ProjectXML\XmlWebForms\XmlWebForms\bin\XmlWebForms.pdb
 C:\D\Skola\STUBA\2roc\Letny\SISS\Project\ProjectXML\XmlWebForms\XmlWebForms\bin\Microsoft.Web.Infrastructure.dll
-C:\D\Skola\STUBA\2roc\Letny\SISS\Project\ProjectXML\XmlWebForms\XmlWebForms\bin\Microsoft.Web.Mvc.FixedDisplayModes.dll
 C:\D\Skola\STUBA\2roc\Letny\SISS\Project\ProjectXML\XmlWebForms\XmlWebForms\bin\Newtonsoft.Json.dll
 C:\D\Skola\STUBA\2roc\Letny\SISS\Project\ProjectXML\XmlWebForms\XmlWebForms\bin\System.Web.Helpers.dll
 C:\D\Skola\STUBA\2roc\Letny\SISS\Project\ProjectXML\XmlWebForms\XmlWebForms\bin\System.Web.Mvc.dll
@@ -19,3 +18,4 @@ C:\D\Skola\STUBA\2roc\Letny\SISS\Project\ProjectXML\XmlWebForms\XmlWebForms\bin\
 C:\D\Skola\STUBA\2roc\Letny\SISS\Project\ProjectXML\XmlWebForms\XmlWebForms\obj\Debug\XmlWebForms.csprojResolveAssemblyReference.cache
 C:\D\Skola\STUBA\2roc\Letny\SISS\Project\ProjectXML\XmlWebForms\XmlWebForms\obj\Debug\XmlWebForms.dll
 C:\D\Skola\STUBA\2roc\Letny\SISS\Project\ProjectXML\XmlWebForms\XmlWebForms\obj\Debug\XmlWebForms.pdb
+C:\D\Skola\STUBA\2roc\Letny\SISS\Project\ProjectXML\XmlWebForms\XmlWebForms\bin\Microsoft.Web.Mvc.FixedDisplayModes.dll
