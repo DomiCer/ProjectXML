@@ -1,0 +1,18 @@
+﻿@model XmlWebForms.Models.nakladyType
+
+  
+        <div class="editor-label">
+            @Html.LabelFor(model => model.polozka)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.polozka)
+            @Html.ValidationMessageFor(model => model.polozka)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.cena)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.cena)
+            @Html.ValidationMessageFor(model => model.cena)
+        </div>

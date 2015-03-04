@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-
+using XmlWebForms.Models;
 namespace XmlWebForms.Controllers
 {
     public class FormController : Controller
@@ -13,7 +13,7 @@ namespace XmlWebForms.Controllers
 
         public ActionResult index()
         {
-            return View();
+            return View(new dotacia());
         }
 
 
