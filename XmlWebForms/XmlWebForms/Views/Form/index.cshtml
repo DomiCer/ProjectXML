@@ -1,17 +1,47 @@
-﻿@model dotacia
+﻿@model XmlWebForms.Models.dotacia
 
 @{
     ViewBag.Title = "index";
+    Layout = "~\\Views\\Shared\\_Layout.cshtml";
 }
 
-<h2>index</h2>
+
+
+@if (ViewBag.errors != null)
+{ 
+     <div style="background: #F5DCCA; padding:10px; margin:10px;">
+       
+    @if ((bool)ViewBag.errors)
+    {
+        <span style="color:red">
+            XML nie je Validné!
+        </span>
+    }
+    else
+    {
+        <span style="color:green">
+            XML je Validné!
+        </span>
+    }
+    
+    @if (ViewBag.xml != null) { 
+        <div>
+           @{ var xmlResult = (string)ViewBag.xml;}
+            @xmlResult
+        </div>
+    }
+
+   </div>
+}
+
+
 
 @using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 
     <fieldset>
-        <legend>dotacia</legend>
+        <legend>Dotácia na kultúru</legend>
 
         <div class="editor-label">
             @Html.LabelFor(model => model.nazovFirmy)
@@ -109,12 +139,81 @@
             @Html.ValidationMessageFor(model => model.ziadanaSuma)
         </div>
 
-        <p>
-            <input type="submit" value="Create" />
-        </p>
+     
+
+        
+   
+    
+    
+    <fieldset>
+        <legend class="subLegend">Náklady</legend>
+        <div class="nakladyDiv">
+            <div class="nakladItem_0">
+            @Html.EditorFor(model => model.naklady)
+             </div>
+         </div>
+        <input type="button" id="add" value="pridat" /> 
+        <input type="button" id="remove" value="odstranit" /> 
     </fieldset>
+    
+    </fieldset>
+        <table>
+            <tr>
+                <td><input type="submit" name="ValidateXML" value="Validovať XML" /></td>
+                <td><input type="submit" name="ValidateXSL" value="Validovať XSL" /></td>
+            </tr>
+        </table>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        var iter = 0;
+        var newblock = $('.nakladyDiv').html();
+        $('#add').click(function () {
+            iter++;
+            $newBlockObj = $(newblock);
+            //var newtext = newblock.replace("naklady[0]", "naklady[" + iter + "]").replace("naklady_0_", "naklady_"+iter+"_");
+            $newBlockObj.find('#nakladItem').attr("id", "nakladItem" + iter);
+
+            $newBlockObj.find('input').each(function () {
+                var obj = $(this)[0];
+                if (obj.name == "naklady[0].polozka") {
+                    obj.name = "naklady[" + iter + "].polozka";
+                    obj.id = "naklady_" + iter + "__polozka";
+                } else if (obj.name == "naklady[0].cena") {
+                    obj.name = "naklady[" + iter + "].cena";
+                    obj.id = "naklady_" + iter + "__cena";
+                }
+                
+               
+            });
+           
+            $newBlockObj.find('label').each(function () {
+                var obj = $(this);
+                if (obj.attr("for") == "naklady_0__polozka") {
+                    obj.attr("for", "naklady_" + iter + "__polozka");
+                } else if (obj.attr("for") == "naklady_0__cena") {
+                    obj.attr("for", "naklady_" + iter + "__cena");
+                }
+
+            });
+
+            $newBlockObj.find('span').each(function () {
+                var obj = $(this);
+                if (obj.attr("data-valmsg-for") == "naklady[0].polozka") {
+                    obj.attr("data-valmsg-for", "naklady[" + iter + "].polozka");
+                } else if (obj.attr("data-valmsg-for") == "naklady[0].cena") {
+                    obj.attr("data-valmsg-for", "naklady[" + iter + "].cena");
+                }
+
+            });
+
+            $('.nakladyDiv').append($newBlockObj.html());
+           
+        });
+    });
+
+</script>
