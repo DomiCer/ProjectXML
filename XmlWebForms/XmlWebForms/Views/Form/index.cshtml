@@ -5,14 +5,43 @@
     Layout = "~\\Views\\Shared\\_Layout.cshtml";
 }
 
-<h2>index</h2>
+
+
+@if (ViewBag.errors != null)
+{ 
+     <div style="background: #F5DCCA; padding:10px; margin:10px;">
+       
+    @if ((bool)ViewBag.errors)
+    {
+        <span style="color:red">
+            XML nie je Validné!
+        </span>
+    }
+    else
+    {
+        <span style="color:green">
+            XML je Validné!
+        </span>
+    }
+    
+    @if (ViewBag.xml != null) { 
+        <div>
+           @{ var xmlResult = (string)ViewBag.xml;}
+            @xmlResult
+        </div>
+    }
+
+   </div>
+}
+
+
 
 @using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 
     <fieldset>
-        <legend>dotacia</legend>
+        <legend>Dotácia na kultúru</legend>
 
         <div class="editor-label">
             @Html.LabelFor(model => model.nazovFirmy)
@@ -112,24 +141,32 @@
 
      
 
-        <p>
-            <input type="submit" value="Create" />
-        </p>
-    </fieldset>
+        
+   
     
     
     <fieldset>
-        <legend>Previous roles</legend>
+        <legend class="subLegend">Náklady</legend>
         <div class="nakladyDiv">
             <div class="nakladItem_0">
             @Html.EditorFor(model => model.naklady)
              </div>
          </div>
-        <input type="button" id="add" value="add one" /> 
-        <input type="button" id="remove" value="remove one" /> 
+        <input type="button" id="add" value="pridat" /> 
+        <input type="button" id="remove" value="odstranit" /> 
     </fieldset>
     
+    </fieldset>
+        <table>
+            <tr>
+                <td><input type="submit" name="ValidateXML" value="Validovať XML" /></td>
+                <td><input type="submit" name="ValidateXSL" value="Validovať XSL" /></td>
+            </tr>
+        </table>
 }
+
+
+
 <script type="text/javascript">
 
     $(document).ready(function () {

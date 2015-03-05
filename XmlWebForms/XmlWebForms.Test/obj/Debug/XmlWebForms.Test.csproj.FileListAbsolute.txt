@@ -1,0 +1,13 @@
+C:\D\Skola\STUBA\2roc\Letny\SISS\Project\ProjectXML\XmlWebForms\XmlWebForms.Test\bin\Debug\XmlWebForms.Test.dll
+C:\D\Skola\STUBA\2roc\Letny\SISS\Project\ProjectXML\XmlWebForms\XmlWebForms.Test\bin\Debug\XmlWebForms.Test.pdb
+C:\D\Skola\STUBA\2roc\Letny\SISS\Project\ProjectXML\XmlWebForms\XmlWebForms.Test\bin\Debug\nunit.framework.dll
+C:\D\Skola\STUBA\2roc\Letny\SISS\Project\ProjectXML\XmlWebForms\XmlWebForms.Test\bin\Debug\XmlWebForms.dll
+C:\D\Skola\STUBA\2roc\Letny\SISS\Project\ProjectXML\XmlWebForms\XmlWebForms.Test\bin\Debug\System.Web.Mvc.dll
+C:\D\Skola\STUBA\2roc\Letny\SISS\Project\ProjectXML\XmlWebForms\XmlWebForms.Test\bin\Debug\System.Web.Optimization.dll
+C:\D\Skola\STUBA\2roc\Letny\SISS\Project\ProjectXML\XmlWebForms\XmlWebForms.Test\bin\Debug\XmlWebForms.pdb
+C:\D\Skola\STUBA\2roc\Letny\SISS\Project\ProjectXML\XmlWebForms\XmlWebForms.Test\bin\Debug\nunit.framework.xml
+C:\D\Skola\STUBA\2roc\Letny\SISS\Project\ProjectXML\XmlWebForms\XmlWebForms.Test\bin\Debug\System.Web.Mvc.xml
+C:\D\Skola\STUBA\2roc\Letny\SISS\Project\ProjectXML\XmlWebForms\XmlWebForms.Test\bin\Debug\System.Web.Optimization.xml
+C:\D\Skola\STUBA\2roc\Letny\SISS\Project\ProjectXML\XmlWebForms\XmlWebForms.Test\obj\Debug\XmlWebForms.Test.csprojResolveAssemblyReference.cache
+C:\D\Skola\STUBA\2roc\Letny\SISS\Project\ProjectXML\XmlWebForms\XmlWebForms.Test\obj\Debug\XmlWebForms.Test.dll
+C:\D\Skola\STUBA\2roc\Letny\SISS\Project\ProjectXML\XmlWebForms\XmlWebForms.Test\obj\Debug\XmlWebForms.Test.pdb
