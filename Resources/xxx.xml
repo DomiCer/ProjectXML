@@ -1,0 +1,22 @@
+<dotacia xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <nazovFirmy>hg</nazovFirmy>
+  <pravnaForma>gh</pravnaForma>
+  <ico>7</ico>
+  <dic>890</dic>
+  <telefon>jhj</telefon>
+  <email>jhh</email>
+  <adresa>jh</adresa>
+  <mesto>jh</mesto>
+  <okres>jh</okres>
+  <kraj>jhh</kraj>
+  <psc>67767</psc>
+  <ziadanaSuma>0</ziadanaSuma>
+  <naklady>
+    <polozka>jhjh</polozka>
+    <cena>87</cena>
+  </naklady>
+  <naklady>
+    <polozka>jhjh</polozka>
+    <cena>87</cena>
+  </naklady>
+</dotacia>

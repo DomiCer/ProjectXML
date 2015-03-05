@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Xml;
+using System.Xml.Xsl;
 using System.Xml.Linq;
 using System.Xml.Serialization;
 using System.Xml.Schema;
@@ -28,7 +29,7 @@ namespace XmlWebForms.Controllers
             if (Request.Form["ValidateXML"] !=null )
             {
                 XmlSchemaSet schemas = new XmlSchemaSet();
-                schemas.Add("", @"C:\D\Skola\STUBA\2roc\Letny\SISS\Project\ProjectXML\Resources\dotacie.xsd");
+                schemas.Add("", @"C:\AllMyDocs\FIIT\02_Ing\2_roc\LS\spracovanie informacii v podnikani a verejnej sprave\ProjectXML\ProjectXML\Resources\dotacie.xsd");
 
                 Console.WriteLine("Attempting to validate");
                 XDocument custOrdDoc = CreateXML(dotaciaObj);  
@@ -42,8 +43,15 @@ namespace XmlWebForms.Controllers
                 ViewBag.errors = errors;
                 ViewBag.xml = custOrdDoc.ToString();
             }
-            else  if (Request.Form["ValidateXSL"] !=null ){
-            
+            else if (Request.Form["Transform"] != null)
+            {
+                XDocument custOrdDoc = CreateXML(dotaciaObj);
+                System.IO.File.WriteAllText("C:/AllMyDocs/FIIT/02_Ing/2_roc/LS/spracovanie informacii v podnikani a verejnej sprave/ProjectXML/ProjectXML/Resources/xxx.xml", custOrdDoc.ToString());
+
+                XslTransform myXslTransform = new XslTransform();
+                myXslTransform.Load("C:/AllMyDocs/FIIT/02_Ing/2_roc/LS/spracovanie informacii v podnikani a verejnej sprave/ProjectXML/ProjectXML/Resources/transformacia.xslt");
+                myXslTransform.Transform("C:/AllMyDocs/FIIT/02_Ing/2_roc/LS/spracovanie informacii v podnikani a verejnej sprave/ProjectXML/ProjectXML/Resources/xxx.xml", "C:/AllMyDocs/FIIT/02_Ing/2_roc/LS/spracovanie informacii v podnikani a verejnej sprave/ProjectXML/ProjectXML/Resources/output.txt");
+                return File("C:/AllMyDocs/FIIT/02_Ing/2_roc/LS/spracovanie informacii v podnikani a verejnej sprave/ProjectXML/ProjectXML/Resources/output.txt", "txt");
             }
             return View(dotaciaObj);
         }

@@ -3,7 +3,7 @@
 xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 <xsl:output method="text" indent="yes"/>
 	<xsl:template match="/">
-DOTACIA NA KULTURU
+DOTÁCIA NA KULTÚRU
 ******************
 
 Názov firmy: <xsl:value-of select="dotacia/nazovFirmy"/>
@@ -20,7 +20,7 @@ PSC: <xsl:value-of select="dotacia/psc"/>
 
 Ziadana suma: <xsl:value-of select="dotacia/ziadanaSuma"/> €
 
-NAKLADY:
+NÁKLADY:
 ___________________________________________________
 
   <xsl:for-each select="dotacia/naklady">

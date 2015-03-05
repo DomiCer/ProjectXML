@@ -42,104 +42,167 @@
 
     <fieldset>
         <legend>Dotácia na kultúru</legend>
-
+        
+        <table>
+            <tr>
+                <td>
         <div class="editor-label">
             @Html.LabelFor(model => model.nazovFirmy)
         </div>
+                    </td>
+                <td>
         <div class="editor-field">
             @Html.EditorFor(model => model.nazovFirmy)
             @Html.ValidationMessageFor(model => model.nazovFirmy)
         </div>
-
+                </td>
+                </tr>
+            <tr>
+                <td>
         <div class="editor-label">
             @Html.LabelFor(model => model.pravnaForma)
         </div>
+                    </td>
+                <td>
         <div class="editor-field">
             @Html.EditorFor(model => model.pravnaForma)
             @Html.ValidationMessageFor(model => model.pravnaForma)
         </div>
-
+                    </td>
+                </tr>
+            <tr>
+                <td>
         <div class="editor-label">
             @Html.LabelFor(model => model.ico)
         </div>
+                    </td>
+                <td>
         <div class="editor-field">
             @Html.EditorFor(model => model.ico)
             @Html.ValidationMessageFor(model => model.ico)
         </div>
-
+                    </td>
+                </tr>
+            <tr>
+             <td>
         <div class="editor-label">
             @Html.LabelFor(model => model.dic)
         </div>
+                 </td>
+                <td>
         <div class="editor-field">
             @Html.EditorFor(model => model.dic)
             @Html.ValidationMessageFor(model => model.dic)
         </div>
-
+                    </td>
+                </tr>
+            <tr>
+                <td>
         <div class="editor-label">
             @Html.LabelFor(model => model.telefon)
         </div>
+                    </td>
+                <td>
         <div class="editor-field">
             @Html.EditorFor(model => model.telefon)
             @Html.ValidationMessageFor(model => model.telefon)
         </div>
-
+                    </td>
+                </tr>
+            <tr>
+                    <td>
         <div class="editor-label">
             @Html.LabelFor(model => model.email)
         </div>
+                        </td>
+                    <td>
         <div class="editor-field">
             @Html.EditorFor(model => model.email)
             @Html.ValidationMessageFor(model => model.email)
         </div>
-
+                        </td>
+                </tr>
+            <tr>
+                <td>
         <div class="editor-label">
             @Html.LabelFor(model => model.adresa)
         </div>
+                    </td>
+                    <td>
         <div class="editor-field">
             @Html.EditorFor(model => model.adresa)
             @Html.ValidationMessageFor(model => model.adresa)
         </div>
-
+                </td>
+                </tr>
+            <tr>
+                    <td>
         <div class="editor-label">
             @Html.LabelFor(model => model.mesto)
         </div>
+                    </td>
+                    <td>
         <div class="editor-field">
             @Html.EditorFor(model => model.mesto)
             @Html.ValidationMessageFor(model => model.mesto)
         </div>
-
+                        </td>
+                    </tr>
+            <tr>
+            <td>
         <div class="editor-label">
             @Html.LabelFor(model => model.okres)
         </div>
+                </td>
+            <td>
         <div class="editor-field">
             @Html.EditorFor(model => model.okres)
             @Html.ValidationMessageFor(model => model.okres)
         </div>
-
+                </td>
+            </tr>
+            <tr>
+                <td>
         <div class="editor-label">
             @Html.LabelFor(model => model.kraj)
         </div>
+                    </td>
+                <td>
         <div class="editor-field">
             @Html.EditorFor(model => model.kraj)
             @Html.ValidationMessageFor(model => model.kraj)
         </div>
-
+                    </td>
+                </tr>
+<tr>
+    <td>
         <div class="editor-label">
             @Html.LabelFor(model => model.psc)
         </div>
-        <div class="editor-field">
+    </td>
+    <td>   
+         <div class="editor-field">
             @Html.EditorFor(model => model.psc)
             @Html.ValidationMessageFor(model => model.psc)
         </div>
-
+    </td>
+</tr>
+            
+<tr style="height:20px"><td></td></tr>                  
+<tr>
+    <td>
         <div class="editor-label">
             @Html.LabelFor(model => model.ziadanaSuma)
         </div>
-        <div class="editor-field">
+    </td>
+    <td>
+         <div class="editor-field">
             @Html.EditorFor(model => model.ziadanaSuma)
             @Html.ValidationMessageFor(model => model.ziadanaSuma)
         </div>
-
-     
+    </td>
+</tr>
+</table>
 
         
    
@@ -160,9 +223,12 @@
         <table>
             <tr>
                 <td><input type="submit" name="ValidateXML" value="Validovať XML" /></td>
-                <td><input type="submit" name="ValidateXSL" value="Validovať XSL" /></td>
+                <td><input type="submit" name="Transform" value="Transformovať na Text" /></td>
             </tr>
         </table>
+    
+    
+    
 }
 
 
