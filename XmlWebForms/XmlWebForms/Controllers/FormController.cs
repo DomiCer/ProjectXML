@@ -45,13 +45,17 @@ namespace XmlWebForms.Controllers
             }
             else if (Request.Form["Transform"] != null)
             {
+                string xmlFilePath = "C:/AllMyDocs/FIIT/02_Ing/2_roc/LS/spracovanie informacii v podnikani a verejnej sprave/ProjectXML/ProjectXML/Resources/xxx.xml";
+                string templatePath = "C:/AllMyDocs/FIIT/02_Ing/2_roc/LS/spracovanie informacii v podnikani a verejnej sprave/ProjectXML/ProjectXML/Resources/transformacia.xslt";
+                string outputFile = "C:/AllMyDocs/FIIT/02_Ing/2_roc/LS/spracovanie informacii v podnikani a verejnej sprave/ProjectXML/ProjectXML/Resources/output.txt";
+            
                 XDocument custOrdDoc = CreateXML(dotaciaObj);
-                System.IO.File.WriteAllText("C:/AllMyDocs/FIIT/02_Ing/2_roc/LS/spracovanie informacii v podnikani a verejnej sprave/ProjectXML/ProjectXML/Resources/xxx.xml", custOrdDoc.ToString());
+                System.IO.File.WriteAllText(xmlFilePath, custOrdDoc.ToString());
 
                 XslTransform myXslTransform = new XslTransform();
-                myXslTransform.Load("C:/AllMyDocs/FIIT/02_Ing/2_roc/LS/spracovanie informacii v podnikani a verejnej sprave/ProjectXML/ProjectXML/Resources/transformacia.xslt");
-                myXslTransform.Transform("C:/AllMyDocs/FIIT/02_Ing/2_roc/LS/spracovanie informacii v podnikani a verejnej sprave/ProjectXML/ProjectXML/Resources/xxx.xml", "C:/AllMyDocs/FIIT/02_Ing/2_roc/LS/spracovanie informacii v podnikani a verejnej sprave/ProjectXML/ProjectXML/Resources/output.txt");
-                return File("C:/AllMyDocs/FIIT/02_Ing/2_roc/LS/spracovanie informacii v podnikani a verejnej sprave/ProjectXML/ProjectXML/Resources/output.txt", "txt");
+                myXslTransform.Load(templatePath);
+                myXslTransform.Transform(xmlFilePath, outputFile); 
+                return File(outputFile, "txt");
             }
             return View(dotaciaObj);
         }

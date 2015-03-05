@@ -2,23 +2,22 @@
 DOTÁCIA NA KULTÚRU
 ******************
 
-Názov firmy: hg
-Pravna forma: gh
-ICO: 7
-DIC: 890
-Telefon: jhj
-e-mail: jhh
-Adresa: jh
-Mesto: jh
-Okres: jh
-Kraj: jhh
-PSC: 67767
+Názov firmy: 
+Pravna forma: 
+ICO: 23
+DIC: sdf
+Telefon: 
+e-mail: sdf
+Adresa: sdf
+Mesto: sdf
+Okres: 
+Kraj: sdf
+PSC: 
 
-Ziadana suma: 0 €
+Ziadana suma:  €
 
 NÁKLADY:
 ___________________________________________________
 
-  jhjh : 87 €
-  jhjh : 87 €
+   :  €
   
