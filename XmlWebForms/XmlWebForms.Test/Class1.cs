@@ -8,6 +8,7 @@ using System.Xml.Schema;
 using System.Xml.Linq;
 using XmlWebForms.Models;
 using System.Xml;
+using System.Xml.Xsl;
 using System.Xml.Serialization;
 using System.IO;
 
@@ -16,6 +17,25 @@ namespace XmlWebForms.Test
     [TestFixture]
     public class XMLValidator
     {
+        [Test]
+        public void TransformXML()
+        {
+            string xmlFilePath = "C:/AllMyDocs/FIIT/02_Ing/2_roc/LS/spracovanie informacii v podnikani a verejnej sprave/ProjectXML/ProjectXML/Resources/xxx.xml";
+            string templatePath = "C:/AllMyDocs/FIIT/02_Ing/2_roc/LS/spracovanie informacii v podnikani a verejnej sprave/ProjectXML/ProjectXML/Resources/transformacia.xslt"; 
+            string outputFile = "C:/AllMyDocs/FIIT/02_Ing/2_roc/LS/spracovanie informacii v podnikani a verejnej sprave/ProjectXML/ProjectXML/Resources/output.txt";
+            
+            XDocument custOrdDoc = CreateXML(GetGrant());
+            System.IO.File.WriteAllText(xmlFilePath, custOrdDoc.ToString());
+
+            XslTransform myXslTransform = new XslTransform();
+            myXslTransform.Load(templatePath);
+            myXslTransform.Transform(xmlFilePath, outputFile);
+            
+            string textFileContent = File.ReadAllText(outputFile);
+            
+            Assert.IsNotEmpty(textFileContent);
+        }
+
         [Test]
         public void ValidateXML() {
             XmlSchemaSet schemas = new XmlSchemaSet();
