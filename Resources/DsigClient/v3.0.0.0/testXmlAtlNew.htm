@@ -1,0 +1,246 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=windows-1250"/>
+		<title>Nový záznam</title>
+		<script language="javascript" type="text/javascript">
+function doSign()
+{
+	var xml = document.getElementById('iXML').value;
+	var oXML=new ActiveXObject("DSig.XadesSigAtl");
+	var oXMLPlugin=new ActiveXObject("DSig.XmlPluginAtl");
+	var xsd = document.getElementById('iXSD').value;
+	var xsdURI = document.getElementById('iXSDURI').value;
+	var xsdNSURI = document.getElementById('iXSDNSURI').value;
+	var xsl = document.getElementById('iXSL').value;
+	var xslURI = document.getElementById('iXSLURI').value;
+
+	var obj = null;
+	if (!document.getElementById('cbCO2').checked) {
+		obj = oXMLPlugin.CreateObject('objectId', 'Nový záznam', xml, xsd, xsdNSURI, xsdURI, xsl, xslURI);
+	}
+	else {
+		obj = oXMLPlugin.CreateObject2('objectId', 'Nový záznam', xml, xsd, xsdNSURI, xsdURI, xsl, xslURI, 'TXT');
+	}
+	if(obj == null)
+	{
+		document.getElementById('spErr').innerText = oXMLPlugin.ErrorMessage;
+		return;
+	}
+
+	var addObj = oXML.AddObject(obj);
+	if(addObj != 0)
+	{
+		document.getElementById('spErr').innerText = oXML.ErrorMessage;
+		return;
+	}
+
+	var res=oXML.Sign('signatureId10', 'sha256', 'urn:oid:1.3.158.36061701.1.2.1');
+	if(res==0) 
+	{
+		document.getElementById('taOut').value = oXML.SignedXMLWithEnvelope;
+	}
+	else
+	{
+		document.getElementById('spErr').innerText = res + ': ' + oXML.ErrorMessage;
+	}
+}
+
+function doSign11()
+{
+	var xml = document.getElementById('iXML').value;
+	var oXML=new ActiveXObject("DSig.XadesSigAtl");
+	var oXMLPlugin=new ActiveXObject("DSig.XmlPluginAtl");
+	var xsd = document.getElementById('iXSD').value;
+	var xsdURI = document.getElementById('iXSDURI').value;
+	var xsdNSURI = document.getElementById('iXSDNSURI').value;
+	var xsl = document.getElementById('iXSL').value;
+	var xslURI = document.getElementById('iXSLURI').value;
+
+	var obj = null;
+	if (!document.getElementById('cbCO2').checked) {
+		obj = oXMLPlugin.CreateObject('objectId', 'Nový záznam', xml, xsd, xsdNSURI, xsdURI, xsl, xslURI);
+	}
+	else {
+		obj = oXMLPlugin.CreateObject2('objectId', 'Nový záznam', xml, xsd, xsdNSURI, xsdURI, xsl, xslURI, 'TXT');
+	}
+	if(obj == null)
+	{
+		document.getElementById('spErr').innerText = oXMLPlugin.ErrorMessage;
+		return;
+	}
+
+	var addObj = oXML.AddObject(obj);
+	if(addObj != 0)
+	{
+		document.getElementById('spErr').innerText = oXML.ErrorMessage;
+		return;
+	}
+
+	oXML.SetSigningTimeProcessing(1, 1);
+	var res=oXML.Sign11('signatureId11', 'sha256', 'urn:oid:1.3.158.36061701.1.2.1', 'objectId11', 'http://www.aa.sk', '');
+	if(res==0) 
+	{
+		document.getElementById('taOut').value = oXML.SignedXMLWithEnvelope;
+	}
+	else
+	{
+		document.getElementById('spErr').innerText = res + ': ' + oXML.ErrorMessage;
+	}
+}
+
+function doSign20()
+{
+	var xml = document.getElementById('iXML').value;
+	var oXML=new ActiveXObject("DSig.XadesSigAtl");
+	var oXMLPlugin=new ActiveXObject("DSig.XmlPluginAtl");
+	var xsd = document.getElementById('iXSD').value;
+	var xsdURI = document.getElementById('iXSDURI').value;
+	var xsdNSURI = document.getElementById('iXSDNSURI').value;
+	var xsl = document.getElementById('iXSL').value;
+	var xslURI = document.getElementById('iXSLURI').value;
+
+	var obj = null;
+	if (!document.getElementById('cbCO2').checked) {
+		obj = oXMLPlugin.CreateObject('objectId', 'Nový záznam', xml, xsd, xsdNSURI, xsdURI, xsl, xslURI);
+	}
+	else {
+		obj = oXMLPlugin.CreateObject2('objectId', 'Nový záznam', xml, xsd, xsdNSURI, xsdURI, xsl, xslURI, 'TXT');
+	}
+	if(obj == null)
+	{
+		document.getElementById('spErr').innerText = oXMLPlugin.ErrorMessage;
+		return;
+	}
+
+	var addObj = oXML.AddObject(obj);
+	if(addObj != 0)
+	{
+		document.getElementById('spErr').innerText = oXML.ErrorMessage;
+		return;
+	}
+
+	var res=oXML.Sign20('signatureId20', 'sha256', 'urn:oid:1.3.158.36061701.1.2.1', 'objectId20', 'http://www.aa.sk', '');
+	if(res==0) 
+	{
+		document.getElementById('taOut').value = oXML.SignedXMLWithEnvelope;
+	}
+	else
+	{
+		document.getElementById('spErr').innerText = res + ': ' + oXML.ErrorMessage;
+	}
+}
+			</script>
+	</head>
+	<body bgcolor="#a5a5a5">
+		<form name="UForm" id="UDAL" method="post" action=''>
+		<center>ZÁPIS ZÁZNAMU</center>
+
+			<br/>
+			<center>
+				<input type="button" name="OK" value=" Ulož " onclick='javascript:doSign();' /> 
+				<input type="button" name="OK" value=" Ulož11 " onclick='javascript:doSign11();' />
+				<input type="button" name="OK" value=" Ulož20 " onclick='javascript:doSign20();' />
+			</center>
+			
+			<br/>
+			<br/>
+<h3>Dodatočné vstupné dáta</h3>
+<table class="ram_nic" width="720px" cellspacing="5pt" cellpadding="0pt" id="Table1">
+<colgroup>
+	<col width="20%"/>
+	<col width="80%"/>
+</colgroup>
+<tr>
+	<td align="right">XML</td>
+	<td><textarea id="iXML" rows="5" style="width:100%;" name="iXML">
+<Record xmlns="http://some.uri.org" startTime="10:00" endTime="12:00" key="RFP3" author="BLAŽÍČEK">test</Record>
+	</textarea></td>
+</tr>
+<tr>
+	<td align="right">XSD</td>
+	<td><textarea id="iXSD" rows="5" style="width:100%;" name="iXSD">
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://some.uri.org" xmlns="http://some.uri.org">
+  <xs:element name="Record">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="xs:NCName">
+			<xs:attribute name="startTime" type="xs:string" use="required"/>
+			<xs:attribute name="endTime" type="xs:string" use="required"/>
+			<xs:attribute name="key" type="xs:string" use="required"/>
+			<xs:attribute name="author" type="xs:string" use="required"/>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
+
+</textarea></td>
+</tr>
+<tr>
+	<td align="right">uri pre xsd</td>
+	<td><input type="text" style="width:100%;" width="100%" id="iXSDURI" value="http://some.server.com/novyzaznam.xsd" name="iXSDURI" /></td>
+</tr>
+<tr>
+	<td align="right">uri pre xsdNS</td>
+	<td><input type="text" style="width:100%;" width="100%" id="iXSDNSURI" value="http://some.uri.org" name="iXSDNSURI" /></td>
+</tr>
+<tr>
+	<td align="right">XSL</td>
+	<td><textarea id="iXSL" rows="5" style="width:100%;" name="iXSL">
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:fo="http://www.w3.org/1999/XSL/Format">
+
+<xsl:output method="text" version="1.0" indent="no" omit-xml-declaration="yes" encoding="windows-1252"/>
+
+<xsl:template match="/">
+    	
+		<xsl:text>ZÁPIS ZÁZNAMU</xsl:text>
+		<xsl:text>&#13;&#10;E2000-RFP3</xsl:text>
+		<xsl:for-each select="*">
+			<xsl:text>&#13;&#10;&#13;&#10;Čas od: </xsl:text>
+			<xsl:value-of select="attribute::startTime"/>
+			<xsl:text>&#13;&#10;Čas do: </xsl:text>
+			<xsl:value-of select="attribute::endTime"/>
+			<xsl:text>&#13;&#10;Kľúč: </xsl:text>
+			<xsl:value-of select="attribute::key"/>
+			<xsl:text>&#13;&#10;Zapísal: </xsl:text>
+			<xsl:value-of select="attribute::author"/>
+			<xsl:text>&#13;&#10;Text: </xsl:text>
+			<xsl:value-of select="."/>
+		</xsl:for-each>
+
+		
+</xsl:template>
+
+
+</xsl:stylesheet>
+
+</textarea></td>
+</tr>
+<tr>
+	<td align="right">uri pre xsl</td>
+	<td><input type="text" style="width:100%;" width="100%" id="iXSLURI" value="http://some.server.com/novyzaznam.xslt" name="iXSLURI" /></td>
+</tr>
+</table>
+CreateObject2: <input type="checkbox" id='cbCO2' />
+<span id="spErr"></span>
+<br/>
+<br/>
+<div id="divRES" style="display:none1">
+<h3>Výsledný podpísaný dokument</h3>
+<table class="ram_nic" width="720px" cellspacing="5pt" cellpadding="0pt" id="Table2">
+<colgroup>
+	<col width="20%"/>
+	<col width="80%"/>
+</colgroup>
+<tr>
+	<td align="right">XML</td>
+	<td><textarea id="taOut" rows="35" cols="80" name="taOut"></textarea></td>
+</tr>
+</table>
+</div>
+		</form>
+	</body>
+</html>

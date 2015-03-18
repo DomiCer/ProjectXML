@@ -1,0 +1,2 @@
+file:podpisovatel_vyvoj.pfx
+psswd:test

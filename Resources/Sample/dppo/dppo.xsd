@@ -1,0 +1,364 @@
+<?xml version="1.0" encoding="ISO-8859-2"?>
+<!-- XSD pre danove priznanie k dani z prijmov pravnickej osoby (DPPO) - verzia pre VDDI. -->
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+	<xsd:annotation>
+		<xsd:documentation>DPPO</xsd:documentation>
+	</xsd:annotation>
+	<!-- komplexny typ nad standardnym retazcom (podla w3) -->
+	<xsd:complexType name="xsdStringType">
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:string">
+				<xsd:attribute name="pole" type="xsd:string" default="y"/>
+				<xsd:attribute name="funkcia" type="xsd:string" default="udajeOOsobe"/>
+				<xsd:attribute name="err" type="xsd:unsignedByte" use="required"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<!-- prazdny retazec-->
+	<xsd:simpleType name="emptyStringType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value=""/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<!-- prazdny alebo klasicky retazec-->
+	<xsd:simpleType name="xStringType">
+		<xsd:union memberTypes="emptyStringType xsd:string"/>
+	</xsd:simpleType>
+	<xsd:complexType name="stringPType">
+		<xsd:simpleContent>
+			<xsd:extension base="xStringType">
+				<xsd:attribute name="err" type="xsd:unsignedByte" use="required"/>
+				<xsd:attribute name="pole" type="xsd:string" default="y"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<!-- xEUDatumType je datum v tvare DD.MM.RRRR-->
+	<xsd:simpleType name="xEUDatumType">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="\d\d?\.\d\d?\.\d\d\d\d"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<!-- datum je prazdny retazec emptyString alebo xEUDatumType-->
+	<xsd:simpleType name="xDatumType">
+		<xsd:union memberTypes="emptyStringType xEUDatumType"/>
+	</xsd:simpleType>
+	<!-- dokument (hlavny element) -->
+	<xsd:element name="dokument">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="hlavicka" type="hlavickaType"/>
+				<xsd:element name="body" type="bodyType"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<!-- hlavicka -->
+	<xsd:complexType name="hlavickaType">
+		<xsd:sequence>
+			<xsd:element name="typDP" type="typDPType"/>
+			<xsd:element name="danovy_urad" type="xsdStringType"/>
+			<xsd:element name="kod_do" type="xsdStringType"/>
+			<xsd:element name="dic" type="xsdStringType"/>
+			<xsd:element name="ico" type="xsdStringType"/>
+			<xsd:element name="pravna_forma" type="xsdStringType"/>
+			<xsd:element name="obch_meno" type="xsdStringType"/>
+			<xsd:element name="sidlo" type="sidloType"/>
+			<xsd:element name="opravnena_osoba" type="opravnena_osobaType"/>
+			<xsd:element name="pocet_priloh" type="xsdStringType"/>
+			<xsd:element name="zdanovacie_obd" type="zdanovacieObdType"/>
+			<xsd:element name="datum_vyplnenia" type="xsdStringType"/>
+		</xsd:sequence>
+		<xsd:attribute name="err" type="xsd:unsignedByte" use="required"/>
+	</xsd:complexType>
+	<!-- boolean typ pre ano/nie policka -->
+	<xsd:simpleType name="XUtypDP">
+		<xsd:union memberTypes="emptyStringType xsd:boolean"/>
+	</xsd:simpleType>
+	<xsd:complexType name="XtypDP">
+		<xsd:simpleContent>
+			<xsd:extension base="XUtypDP">
+				<xsd:attribute name="pole" type="xsd:string" default="y"/>
+				<xsd:attribute name="funkcia" type="xsd:string" default="udajeOOsobe"/>
+				<xsd:attribute name="err" type="xsd:unsignedByte" use="required"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="typDPType">
+		<xsd:sequence>
+			<xsd:element name="rdp" type="XtypDP"/>
+			<xsd:element name="odp" type="XtypDP"/>
+			<xsd:element name="ddp" type="XtypDP"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<!-- info o danovnikovi -->
+	<xsd:complexType name="bankaType">
+		<xsd:sequence>
+			<xsd:element name="nazov_banky" type="xsdStringType"/>
+			<xsd:element name="ucet" type="xsdStringType"/>
+			<xsd:element name="kod_banky" type="xsdStringType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="sidloType">
+		<xsd:sequence>
+			<xsd:element name="ulica" type="xsdStringType"/>
+			<xsd:element name="cislo" type="xsdStringType"/>
+			<xsd:element name="psc" type="xsdStringType"/>
+			<xsd:element name="obec" type="xsdStringType"/>
+			<xsd:element name="stat" type="xsdStringType"/>
+			<xsd:element name="tel" type="xsdStringType"/>
+			<xsd:element name="fax" type="xsdStringType"/>
+			<xsd:element name="banka" type="bankaType" maxOccurs="2"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="sidlo_ooType">
+		<xsd:sequence>
+			<xsd:element name="ulicacislo" type="xsdStringType"/>
+			<xsd:element name="psc" type="xsdStringType"/>
+			<xsd:element name="obec" type="xsdStringType"/>
+			<xsd:element name="stat" type="xsdStringType"/>
+			<xsd:element name="tel" type="xsdStringType"/>
+			<xsd:element name="fax" type="xsdStringType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="opravnena_osobaType">
+		<xsd:sequence>
+			<xsd:element name="priezvisko" type="xsdStringType"/>
+			<xsd:element name="meno" type="xsdStringType"/>
+			<xsd:element name="titul" type="xsdStringType"/>
+			<xsd:element name="postavenie" type="xsdStringType"/>
+			<xsd:element name="sidlo_oo" type="sidlo_ooType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<!-- typ rok, obmedzeny bud na prazdny retazec alebo 4zn decimal -->
+	<xsd:simpleType name="Xrok">
+		<xsd:restriction base="xsd:string">
+			<xsd:length value="4"/>
+			<xsd:pattern value="[0-9][0-9][0-9][0-9]"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<!-- typ datum s atributom err -->
+	<xsd:complexType name="datumZdanObdType">
+		<xsd:sequence>
+			<xsd:element name="den" type="xsdStringType"/>
+			<xsd:element name="mesiac" type="xsdStringType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="zdanovacieObdType">
+		<xsd:sequence>
+			<xsd:element name="datum_od" type="datumZdanObdType"/>
+			<xsd:element name="datum_do" type="datumZdanObdType"/>
+			<xsd:element name="rok" type="xsdStringType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<!-- body -->
+	<xsd:complexType name="bodyType">
+		<xsd:sequence>
+			<xsd:element name="r100" type="TdecimalPole"/>
+			<xsd:element name="r110" type="TdecimalPole"/>
+			<xsd:element name="r120" type="TdecimalPole"/>
+			<xsd:element name="r130" type="TdecimalPole"/>
+			<xsd:element name="r140" type="TdecimalPole"/>
+			<xsd:element name="r150" type="TdecimalPole"/>
+			<xsd:element name="r160" type="TdecimalPole"/>
+			<xsd:element name="r170" type="TdecimalPole"/>
+			<xsd:element name="r180" type="TdecimalPole"/>
+			<xsd:element name="r190" type="TdecimalPole"/>
+			<xsd:element name="r200" type="TdecimalPole"/>
+			<xsd:element name="r210" type="TdecimalPole"/>
+			<xsd:element name="r220" type="TdecimalPole"/>
+			<xsd:element name="r230" type="TdecimalPole"/>
+			<xsd:element name="r240" type="TdecimalPole"/>
+			<xsd:element name="r250" type="TdecimalPole"/>
+			<xsd:element name="r260" type="TdecimalPole"/>
+			<xsd:element name="r270" type="TdecimalPole"/>
+			<xsd:element name="r280" type="TdecimalPole"/>
+			<xsd:element name="r290" type="TdecimalPole"/>
+			<xsd:element name="r300" type="TdecimalPole"/>
+			<xsd:element name="r310" type="TdecimalPole"/>
+			<xsd:element name="r320" type="TdecimalPole"/>
+			<xsd:element name="r330" type="TdecimalPole"/>
+			<xsd:element name="r400" type="TdecimalPole"/>
+			<xsd:element name="r410" type="TdecimalPole"/>
+			<xsd:element name="r420" type="TdecimalPole"/>
+			<xsd:element name="r430" type="TdecimalPole"/>
+			<xsd:element name="r440" type="TdecimalPole"/>
+			<xsd:element name="r450" type="TdecimalPole"/>
+			<xsd:element name="r460" type="TdecimalPole"/>
+			<xsd:element name="r470" type="TdecimalPole"/>
+			<xsd:element name="r500" type="TdecimalPole"/>
+			<xsd:element name="r510" type="TdecimalPole"/>
+			<xsd:element name="r600" type="TdecimalPole"/>
+			<xsd:element name="r610" type="TtextSuma"/>
+			<xsd:element name="r620" type="TtextSuma"/>
+			<xsd:element name="r630" type="TdecimalPole"/>
+			<xsd:element name="r640" type="TdecimalPole"/>
+			<xsd:element name="r650" type="TdecimalPole"/>
+			<xsd:element name="r700" type="TdecimalPole"/>
+			<xsd:element name="r710" type="TdecimalPole"/>
+			<xsd:element name="r800" type="TdecimalPole"/>
+			<xsd:element name="r810" type="TdatumSuma"/>
+			<xsd:element name="r820" type="TdatumSuma"/>
+			<xsd:element name="r830" type="TdecimalPole"/>
+			<xsd:element name="r840" type="TdecimalPole"/>
+			<xsd:element name="r850" type="TdecimalPole"/>
+			<xsd:element name="r900" type="TdatumSuma"/>
+			<xsd:element name="r901" type="TdecimalPole"/>
+			<xsd:element name="r902" type="TdecimalPole"/>
+			<xsd:element name="r910" type="TdecimalPole"/>
+			<xsd:element name="ddp_datum" type="xsdStringType"/>
+			<xsd:element name="r920" type="xsdStringType"/>
+			<xsd:element name="r930" type="xsdStringType"/>
+			<xsd:element name="r940" type="xsdStringType"/>
+			<xsd:element name="r950" type="xsdStringType"/>
+			<xsd:element name="r960" type="xsdStringType"/>
+			<xsd:element name="r970" type="xsdStringType"/>
+			<xsd:element name="tab_a" type="Ttab_a"/>
+			<xsd:element name="tab_b" type="Ttab_b"/>
+			<xsd:element name="tab_c" type="Ttab_c"/>
+			<xsd:element name="tab_d" type="Ttab_d"/>
+			<xsd:element name="tab_e" type="Ttab_e"/>
+			<xsd:element name="tab_f" type="Ttab_f"/>
+			<xsd:element name="tab_g" type="Ttab_g"/>
+			<xsd:element name="tab_h" type="Ttab_h"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<!-- typ decimalne pole -->
+	<xsd:simpleType name="Tdecimal">
+		<xsd:restriction base="xsd:decimal"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="XdecimalPole">
+		<xsd:union memberTypes="Tdecimal emptyStringType"/>
+	</xsd:simpleType>
+	<xsd:complexType name="TdecimalPole">
+		<xsd:simpleContent>
+			<xsd:extension base="XdecimalPole">
+				<xsd:attribute name="err" type="xsd:unsignedByte" use="required"/>
+				<xsd:attribute name="pole" type="xsd:string" default="y"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<!-- typ riadku kdde je datum aj cislo -->
+	<xsd:complexType name="TdatumSuma">
+		<xsd:sequence>
+			<xsd:element name="datum" type="xsdStringType"/>
+			<xsd:element name="suma" type="TdecimalPole"/>
+		</xsd:sequence>
+	</xsd:complexType>		
+	<!-- typ riadku kde je text aj cislo -->
+	<xsd:complexType name="TtextSuma">
+		<xsd:sequence>
+			<xsd:element name="text" type="stringPType"/>
+			<xsd:element name="suma" type="TdecimalPole"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<!-- tabulka A -->
+	<xsd:complexType name="Ttab_a">
+		<xsd:sequence>
+			<xsd:element name="r01" type="TdecimalPole"/>
+			<xsd:element name="r02" type="TdecimalPole"/>
+			<xsd:element name="r03" type="TdecimalPole"/>
+			<xsd:element name="r04" type="TdecimalPole"/>
+			<xsd:element name="r05" type="TdecimalPole"/>
+			<xsd:element name="r06" type="TdecimalPole"/>
+			<xsd:element name="r07" type="TdecimalPole"/>
+			<xsd:element name="r08" type="TdecimalPole"/>
+			<xsd:element name="r09" type="TdecimalPole"/>
+			<xsd:element name="r10" type="TdecimalPole"/>
+			<xsd:element name="r11" type="TdecimalPole"/>
+			<xsd:element name="r12" type="TdecimalPole"/>
+			<xsd:element name="r13" type="TdecimalPole"/>
+			<xsd:element name="r14" type="TdecimalPole"/>
+			<xsd:element name="r15" type="TdecimalPole"/>
+			<xsd:element name="r16" type="TdecimalPole"/>
+			<xsd:element name="r17" type="TdecimalPole"/>
+			<xsd:element name="r18" type="TdecimalPole"/>
+			<xsd:element name="r19" type="TdecimalPole"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<!-- tabulka B -->
+	<xsd:complexType name="Ttab_b">
+		<xsd:sequence>
+			<xsd:element name="r01" type="TdecimalPole"/>
+			<xsd:element name="r02" type="TdecimalPole"/>
+			<xsd:element name="r03" type="TdecimalPole"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<!-- tabulka C -->
+	<xsd:complexType name="Ttab_c">
+		<xsd:sequence>
+			<xsd:element name="r01" type="TdecimalPole"/>
+			<xsd:element name="r02" type="TdecimalPole"/>
+			<xsd:element name="r03" type="TdecimalPole"/>
+		</xsd:sequence>
+	</xsd:complexType>	
+	<!-- tabulka D -->
+	<xsd:complexType name="Ttab_d">
+		<xsd:sequence>
+			<xsd:element name="r01" type="TdecimalPole"/>
+			<xsd:element name="r02" type="TdecimalPole"/>
+			<xsd:element name="r03" type="TdecimalPole"/>
+			<xsd:element name="r04" type="TdecimalPole"/>
+			<xsd:element name="r05" type="TdecimalPole"/>
+		</xsd:sequence>
+	</xsd:complexType>	
+	<!-- tabulka E -->
+	<xsd:complexType name="Ttab_e">
+		<xsd:sequence>
+			<xsd:element name="r01" type="TdecimalPole"/>
+			<xsd:element name="r02" type="TdecimalPole"/>
+			<xsd:element name="r03" type="TdecimalPole"/>
+			<xsd:element name="r04" type="TdecimalPole"/>
+			<xsd:element name="r05" type="TdecimalPole"/>
+			<xsd:element name="r06" type="TdecimalPole"/>
+		</xsd:sequence>
+	</xsd:complexType>	
+	<!-- tabulka F -->
+	<xsd:complexType name="Ttab_f">
+		<xsd:sequence>
+			<xsd:element name="cast1" type="Tcast1"/>
+			<xsd:element name="cast2" type="Tcast2"/>
+			<xsd:element name="cast3" type="Tcast3"/>
+		</xsd:sequence>
+	</xsd:complexType>	
+	<!-- tabulka G -->
+	<xsd:complexType name="Ttab_g">
+		<xsd:sequence>
+			<xsd:element name="r01" type="TdecimalPole"/>
+			<xsd:element name="r02" type="TdecimalPole"/>
+		</xsd:sequence>
+	</xsd:complexType>	
+	<!-- tabulka H -->
+	<xsd:complexType name="Ttab_h">
+		<xsd:sequence>
+			<xsd:element name="r01" type="TdecimalPole"/>
+			<xsd:element name="r02" type="TdecimalPole"/>
+			<xsd:element name="r03" type="TdecimalPole"/>
+			<xsd:element name="r04" type="TdecimalPole"/>
+		</xsd:sequence>
+	</xsd:complexType>	
+	<xsd:complexType name="Tstlpce">
+		<xsd:sequence>
+			<xsd:element name="s01" type="TdecimalPole"/>
+			<xsd:element name="s02" type="TdecimalPole"/>
+			<xsd:element name="s03" type="TdecimalPole"/>
+			<xsd:element name="s04" type="TdecimalPole"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<!-- cast 1 tabulky F -->
+	<xsd:complexType name="Tcast1">
+		<xsd:sequence>
+			<xsd:element name="riadok" type="Tstlpce" minOccurs="8" maxOccurs="8"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<!-- cast 2 tabulky F -->
+	<xsd:complexType name="Tcast2">
+		<xsd:sequence>
+			<xsd:element name="riadok" type="Tstlpce" minOccurs="8" maxOccurs="8"/>
+		</xsd:sequence>
+	</xsd:complexType>	
+	<!-- cast 3 tabulky F -->
+	<xsd:complexType name="Tcast3">
+		<xsd:sequence>
+			<xsd:element name="riadok" type="Tstlpce" minOccurs="8" maxOccurs="8"/>
+		</xsd:sequence>
+	</xsd:complexType>	
+</xsd:schema>

@@ -1,0 +1,344 @@
+﻿<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=windows-1250"/>
+		<title>Nový záznam</title>
+		<script language="javascript" type="text/javascript">
+function doSign()
+{
+	var xml = document.getElementById('iXML').value;
+	var oXML=new ActiveXObject("DSig.XadesSigAtl");
+	var oXMLPlugin=new ActiveXObject("DSig.XmlPluginAtl");
+	var xsd = document.getElementById('iXSD').value;
+	var xsdURI = document.getElementById('iXSDURI').value;
+	var xsdNSURI = document.getElementById('iXSDNSURI').value;
+	var xsl = document.getElementById('iXSL').value;
+	var xslURI = document.getElementById('iXSLURI').value;
+
+	var obj = oXMLPlugin.CreateObject2('objectId', 'Informácia o aktuálnom stave doručovania', xml, xsd, xsdNSURI, xsdURI, xsl, xslURI, 'HTML');
+	if(obj == null)
+	{
+		document.getElementById('spErr').innerText = oXMLPlugin.ErrorMessage;
+		return;
+	}
+
+	var addObj = oXML.AddObject(obj);
+	if(addObj != 0)
+	{
+		document.getElementById('spErr').innerText = oXML.ErrorMessage;
+		return;
+	}
+
+	var res=oXML.Sign('signatureId10', 'sha256', 'urn:oid:1.3.158.36061701.1.2.1');
+	if(res==0) 
+	{
+		document.getElementById('taOut').value = oXML.SignedXMLWithEnvelope;
+	}
+	else
+	{
+		document.getElementById('spErr').innerText = oXML.ErrorMessage;
+	}
+}
+
+function doSign11()
+{
+	var xml = document.getElementById('iXML').value;
+	var oXML=new ActiveXObject("DSig.XadesSigAtl");
+	var oXMLPlugin=new ActiveXObject("DSig.XmlPluginAtl");
+	var xsd = document.getElementById('iXSD').value;
+	var xsdURI = document.getElementById('iXSDURI').value;
+	var xsdNSURI = document.getElementById('iXSDNSURI').value;
+	var xsl = document.getElementById('iXSL').value;
+	var xslURI = document.getElementById('iXSLURI').value;
+
+	var obj = oXMLPlugin.CreateObject2('objectId', 'Informácia o aktuálnom stave doručovania', xml, xsd, xsdNSURI, xsdURI, xsl, xslURI, 'HTML');
+	if(obj == null)
+	{
+		document.getElementById('spErr').innerText = oXMLPlugin.ErrorMessage;
+		return;
+	}
+
+	var addObj = oXML.AddObject(obj);
+	if(addObj != 0)
+	{
+		document.getElementById('spErr').innerText = oXML.ErrorMessage;
+		return;
+	}
+
+	oXML.SetSigningTimeProcessing(1, 1);
+	var res=oXML.Sign11('signatureId11', 'sha256', 'urn:oid:1.3.158.36061701.1.2.1', 'objectId11', 'http://www.aa.sk', '');
+	if(res==0) 
+	{
+		document.getElementById('taOut').value = oXML.SignedXMLWithEnvelope;
+	}
+	else
+	{
+		document.getElementById('spErr').innerText = oXML.ErrorMessage;
+	}
+}
+
+function doSign20()
+{
+	var xml = document.getElementById('iXML').value;
+	var oXML=new ActiveXObject("DSig.XadesSigAtl");
+	var oXMLPlugin=new ActiveXObject("DSig.XmlPluginAtl");
+	var xsd = document.getElementById('iXSD').value;
+	var xsdURI = document.getElementById('iXSDURI').value;
+	var xsdNSURI = document.getElementById('iXSDNSURI').value;
+	var xsl = document.getElementById('iXSL').value;
+	var xslURI = document.getElementById('iXSLURI').value;
+
+	var obj = oXMLPlugin.CreateObject2('objectId', 'Informácia o aktuálnom stave doručovania', xml, xsd, xsdNSURI, xsdURI, xsl, xslURI, 'HTML');
+	if(obj == null)
+	{
+		document.getElementById('spErr').innerText = oXMLPlugin.ErrorMessage;
+		return;
+	}
+
+	var addObj = oXML.AddObject(obj);
+	if(addObj != 0)
+	{
+		document.getElementById('spErr').innerText = oXML.ErrorMessage;
+		return;
+	}
+
+	var res=oXML.Sign20('signatureId20', 'sha256', 'urn:oid:1.3.158.36061701.1.2.1', 'objectId20', 'http://www.aa.sk', '');
+	if(res==0) 
+	{
+		document.getElementById('taOut').value = oXML.SignedXMLWithEnvelope;
+	}
+	else
+	{
+		document.getElementById('spErr').innerText = oXML.ErrorMessage;
+	}
+}
+			</script>
+	</head>
+	<body bgcolor="#a5a5a5">
+		<form name="UForm" id="UDAL" method="post" action=''>
+		<center>ZÁPIS ZÁZNAMU</center>
+
+			<br/>
+			<center>
+				<input type="button" name="OK" value=" Ulož " onclick='javascript:doSign();' /> 
+				<input type="button" name="OK" value=" Ulož11 " onclick='javascript:doSign11();' />
+				<input type="button" name="OK" value=" Ulož20 " onclick='javascript:doSign20();' />
+			</center>
+			
+			<br/>
+			<br/>
+<h3>Dodatočné vstupné dáta</h3>
+<table class="ram_nic" width="720px" cellspacing="5pt" cellpadding="0pt" id="Table1">
+<colgroup>
+	<col width="20%"/>
+	<col width="80%"/>
+</colgroup>
+<tr>
+	<td align="right">XML</td>
+	<td><textarea id="iXML" rows="5" style="width:100%;" name="iXML">
+<DeliveryStatus xmlns="http://schemas.gov.sk/form/ED.DeliveryStatus/1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <MessageID>25FC925E-A3C6-4A47-9A53-507410499519</MessageID>
+  <State>
+    <Status>0</Status>
+    <StatusText>OK</StatusText>
+    <StatusTime>2014-01-27</StatusTime>
+  </State>
+</DeliveryStatus>
+	</textarea></td>
+</tr>
+<tr>
+	<td align="right">XSD</td>
+	<td><textarea id="iXSD" rows="5" style="width:100%;" name="iXSD">
+<?xml version="1.0" encoding="UTF-8"?><xs:schema elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://schemas.gov.sk/form/ED.DeliveryStatus/1.2" xmlns="http://schemas.gov.sk/form/ED.DeliveryStatus/1.2">
+<xs:simpleType name="Guid">
+<xs:restriction base="xs:string">
+<xs:pattern value="\b[a-fA-F0-9]{8}(?:-[a-fA-F0-9]{4}){3}-[a-fA-F0-9]{12}\b" />
+<xs:minLength value="36" />
+<xs:maxLength value="36" />
+</xs:restriction>
+</xs:simpleType>
+<xs:simpleType name="Integer">
+<xs:restriction base="xs:integer">
+</xs:restriction>
+</xs:simpleType>
+<xs:simpleType name="StringType">
+<xs:restriction base="xs:string">
+<xs:minLength value="0" />
+<xs:maxLength value="50" />
+</xs:restriction>
+</xs:simpleType>
+<xs:simpleType name="InputDateType">
+<xs:restriction base="xs:date">
+</xs:restriction>
+</xs:simpleType>
+
+
+<xs:element name="DeliveryStatus">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="MessageID" type="Guid" minOccurs="1" />
+<xs:element name="State" minOccurs="1" maxOccurs="1">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="Status" type="Integer" minOccurs="1" />
+<xs:element name="StatusText" type="StringType" minOccurs="1" />
+<xs:element name="StatusTime" type="InputDateType" minOccurs="0" nillable="true" />
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:schema>
+
+
+
+</textarea></td>
+</tr>
+<tr>
+	<td align="right">uri pre xsd</td>
+	<td><input type="text" style="width:100%;" width="100%" id="iXSDURI" value="http://schemas.gov.sk/form/ED.DeliveryStatus/1.2.xsd" name="iXSDURI" /></td>
+</tr>
+<tr>
+	<td align="right">NS pre xsd</td>
+	<td><input type="text" style="width:100%;" width="100%" id="iXSDNSURI" value="http://schemas.gov.sk/form/ED.DeliveryStatus/1.2" name="iXSDNSURI" /></td>
+</tr>
+<tr>
+	<td align="right">XSL</td>
+	<td><textarea id="iXSL" rows="5" style="width:100%;" name="iXSL">
+<?xml version="1.0" encoding="UTF-8"?>
+<xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"  xmlns:egonp="http://schemas.gov.sk/form/ED.DeliveryStatus/1.2">
+<xsl:output method="xhtml" xpath-default-namespace="http://www.w3.org/1999/xhtml" indent="yes" omit-xml-declaration="yes"/>
+<xsl:template match="/">
+<xsl:text disable-output-escaping='yes'>&amp;lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"&amp;gt;</xsl:text>
+<html xsl:version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=8" />
+<title>DeliveryStatus</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<meta name="language" content="sk-SK" />
+<style type="text/css">
+body { 
+	font-family: 'Open Sans', 'Segoe UI', 'Trebuchet MS', 'Geneva CE', lucida, sans-serif;
+	background-color:transparent;
+	color: #646464;
+}
+.ui-tabs {
+	padding: .2em;
+	position: relative;
+	zoom: 1;
+}
+.ui-widget-content {
+	background: #f9f9f9;
+	border: 2px solid #d4d4d4;
+	color: #3e3e3e;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	-ms-border-radius: 5px;
+	-o-border-radius: 5px;
+	border-radius: 5px
+}
+.ui-widget-header {					 
+	font-weight: 400;	
+	border: 1px solid #5f5247;
+	background-color: #5f5247;
+	color: #fff;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	-ms-border-radius: 5px;
+	-o-border-radius: 5px;
+	border-radius: 5px
+}								
+.clear { clear: both; }
+.layoutMain {
+	margin: 0px auto;
+	padding: 5px 5px 5px 5px;	
+}				
+.layoutRow { margin-bottom: 5px; }				
+.caption { /*width: 100%; border-bottom: solid 1px black;*/ }
+.nocaption > .caption { border: 0px !important; }
+.nocaption > .caption span {
+	background: none !important;
+	display: none;
+} 
+.caption .title { padding-left: 5px; }
+.headercorrection {	
+	margin: 0px;
+}				
+.labelVis {
+	float: left;
+	font-weight: bold;
+	font-family: 'Open Sans', 'Segoe UI', 'Trebuchet MS', 'Geneva CE', lucida, sans-serif;
+	line-height: 25px;
+	margin: 0px 18px 0px 0px;
+	padding: 0;
+	width: 190px;
+}
+.contentVis {    	     
+	float: left;	
+	line-height: 25px;
+	margin: 0px;
+	padding: 0px;
+	vertical-align: top;			
+}
+.wordwrap { 
+   white-space: pre-wrap;      
+   white-space: -moz-pre-wrap; 
+   white-space: -pre-wrap;     
+   white-space: -o-pre-wrap;   
+   word-wrap: break-word;      
+}				
+</style>
+</head>
+<body>
+<div id="main" class="layoutMain">
+<xsl:for-each select="/egonp:DeliveryStatus"><div id="" class="layoutRow ui-tabs ui-widget-content" title="" >
+<div class="caption ui-widget-header">
+<div class="headercorrection">Informácia o aktuálnom stave doručovania</div>
+</div>
+<xsl:if test="/egonp:DeliveryStatus/egonp:MessageID/text()"><div><label class="labelVis">MessageID: </label><span class="contentVis wordwrap"><xsl:value-of select="./egonp:MessageID"/></span></div><div class="clear"></div></xsl:if>
+<xsl:for-each select="/egonp:DeliveryStatus/egonp:State"><div id="" class="layoutRow ui-tabs ui-widget-content" title="" >
+<div class="caption ui-widget-header">
+<div class="headercorrection">Stav doručovania</div>
+</div>
+<xsl:if test="/egonp:DeliveryStatus/egonp:State/egonp:Status/text()"><div><label class="labelVis">Identifikátor stavu: </label><span class="contentVis wordwrap"><xsl:value-of select="./egonp:Status"/></span></div><div class="clear"></div></xsl:if>
+<xsl:if test="/egonp:DeliveryStatus/egonp:State/egonp:StatusText/text()"><div><label class="labelVis">Stav: </label><span class="contentVis wordwrap"><xsl:value-of select="./egonp:StatusText"/></span></div><div class="clear"></div></xsl:if>
+<xsl:if test="/egonp:DeliveryStatus/egonp:State/egonp:StatusTime/text()"><div><label class="labelVis">Čas stavu: </label><span class="contentVis wordwrap"><xsl:call-template name="formatToSkDate"><xsl:with-param name="date" select="./egonp:StatusTime" /></xsl:call-template></span></div><div class="clear"></div></xsl:if>
+</div>
+</xsl:for-each></div>
+</xsl:for-each></div>
+</body>
+</html>
+</xsl:template>
+<xsl:template name="formatToSkDate">
+<xsl:param name="date" />
+<xsl:value-of select="concat(substring($date, 9, 2), '.', substring($date, 6, 2), '.', substring($date, 1, 4))" />
+</xsl:template>
+</xsl:stylesheet>
+
+
+</textarea></td>
+</tr>
+<tr>
+	<td align="right">uri pre xsl</td>
+	<td><input type="text" style="width:100%;" width="100%" id="iXSLURI" value="http://schemas.gov.sk/form/ED.DeliveryStatus/1.2.xslt" name="iXSLURI" /></td>
+</tr>
+</table>
+<span id="spErr"></span>
+<br/>
+<br/>
+<div id="divRES" style="display:none1">
+<h3>Výsledný podpísaný dokument</h3>
+<table class="ram_nic" width="720px" cellspacing="5pt" cellpadding="0pt" id="Table2">
+<colgroup>
+	<col width="20%"/>
+	<col width="80%"/>
+</colgroup>
+<tr>
+	<td align="right">XML</td>
+	<td><textarea id="taOut" rows="35" cols="80" name="taOut"></textarea></td>
+</tr>
+</table>
+</div>
+		</form>
+	</body>
+</html>

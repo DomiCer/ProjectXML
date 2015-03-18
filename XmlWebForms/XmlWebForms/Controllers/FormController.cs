@@ -16,6 +16,10 @@ namespace XmlWebForms.Controllers
     {
         //
         // GET: /Form/
+        public string XsdPath { get { return HttpContext.Server.MapPath("~/App_Data/dotacie.xsd"); } }
+        public string xmlFilePath { get { return HttpContext.Server.MapPath("~/App_Data/xxx.xml"); } }
+        public string templatePath { get { return HttpContext.Server.MapPath("~/App_Data/transformacia.xslt"); } }
+        public string outputFile { get { return HttpContext.Server.MapPath("~/App_Data/output.txt"); } }
 
         public ActionResult index()
         {
@@ -29,7 +33,7 @@ namespace XmlWebForms.Controllers
             if (Request.Form["ValidateXML"] !=null )
             {
                 XmlSchemaSet schemas = new XmlSchemaSet();
-                schemas.Add("", @"C:\AllMyDocs\FIIT\02_Ing\2_roc\LS\spracovanie informacii v podnikani a verejnej sprave\ProjectXML\ProjectXML\Resources\dotacie.xsd");
+                schemas.Add("", XsdPath);
 
                 Console.WriteLine("Attempting to validate");
                 XDocument custOrdDoc = CreateXML(dotaciaObj);  
@@ -42,13 +46,14 @@ namespace XmlWebForms.Controllers
                 string result = errors ? "did not validate" : "validated";
                 ViewBag.errors = errors;
                 ViewBag.xml = custOrdDoc.ToString();
+
+
+                ViewBag.xsl = ReadFile(templatePath);
+                ViewBag.xsd = ReadFile(XsdPath);
+
             }
             else if (Request.Form["Transform"] != null)
             {
-                string xmlFilePath = "C:/AllMyDocs/FIIT/02_Ing/2_roc/LS/spracovanie informacii v podnikani a verejnej sprave/ProjectXML/ProjectXML/Resources/xxx.xml";
-                string templatePath = "C:/AllMyDocs/FIIT/02_Ing/2_roc/LS/spracovanie informacii v podnikani a verejnej sprave/ProjectXML/ProjectXML/Resources/transformacia.xslt";
-                string outputFile = "C:/AllMyDocs/FIIT/02_Ing/2_roc/LS/spracovanie informacii v podnikani a verejnej sprave/ProjectXML/ProjectXML/Resources/output.txt";
-            
                 XDocument custOrdDoc = CreateXML(dotaciaObj);
                 System.IO.File.WriteAllText(xmlFilePath, custOrdDoc.ToString());
 
@@ -60,6 +65,16 @@ namespace XmlWebForms.Controllers
             return View(dotaciaObj);
         }
 
+
+
+        #region Methods
+
+        public string ReadFile(string FilePath) {
+
+            string text = System.IO.File.ReadAllText(FilePath);
+
+            return text;
+        }
        
         public XDocument CreateXML(Object ClassObject)
         {
@@ -76,5 +91,7 @@ namespace XmlWebForms.Controllers
                 return xmlDoc;
             }
         }
+
+        #endregion
     }
 }
