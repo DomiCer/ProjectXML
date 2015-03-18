@@ -52,3 +52,31 @@ C:\AllMyDocs\FIIT\02_Ing\2_roc\LS\spracovanie informacii v podnikani a verejnej 
 C:\AllMyDocs\FIIT\02_Ing\2_roc\LS\spracovanie informacii v podnikani a verejnej sprave\ProjectXML\ProjectXML\XmlWebForms\XmlWebForms\bin\System.Web.WebPages.Razor.xml
 C:\AllMyDocs\FIIT\02_Ing\2_roc\LS\spracovanie informacii v podnikani a verejnej sprave\ProjectXML\ProjectXML\XmlWebForms\XmlWebForms\obj\Debug\XmlWebForms.dll
 C:\AllMyDocs\FIIT\02_Ing\2_roc\LS\spracovanie informacii v podnikani a verejnej sprave\ProjectXML\ProjectXML\XmlWebForms\XmlWebForms\obj\Debug\XmlWebForms.pdb
+C:\D\Skola\STUBA\2roc\Letny\SIVVS\Project\ProjectXML\XmlWebForms\XmlWebForms\bin\XmlWebForms.dll
+C:\D\Skola\STUBA\2roc\Letny\SIVVS\Project\ProjectXML\XmlWebForms\XmlWebForms\bin\XmlWebForms.pdb
+C:\D\Skola\STUBA\2roc\Letny\SIVVS\Project\ProjectXML\XmlWebForms\XmlWebForms\bin\dotless.Core.dll
+C:\D\Skola\STUBA\2roc\Letny\SIVVS\Project\ProjectXML\XmlWebForms\XmlWebForms\bin\Microsoft.Web.Infrastructure.dll
+C:\D\Skola\STUBA\2roc\Letny\SIVVS\Project\ProjectXML\XmlWebForms\XmlWebForms\bin\Microsoft.Web.Mvc.FixedDisplayModes.dll
+C:\D\Skola\STUBA\2roc\Letny\SIVVS\Project\ProjectXML\XmlWebForms\XmlWebForms\bin\Newtonsoft.Json.dll
+C:\D\Skola\STUBA\2roc\Letny\SIVVS\Project\ProjectXML\XmlWebForms\XmlWebForms\bin\System.Web.Helpers.dll
+C:\D\Skola\STUBA\2roc\Letny\SIVVS\Project\ProjectXML\XmlWebForms\XmlWebForms\bin\System.Web.Mvc.dll
+C:\D\Skola\STUBA\2roc\Letny\SIVVS\Project\ProjectXML\XmlWebForms\XmlWebForms\bin\System.Web.Optimization.dll
+C:\D\Skola\STUBA\2roc\Letny\SIVVS\Project\ProjectXML\XmlWebForms\XmlWebForms\bin\System.Web.Optimization.Less.dll
+C:\D\Skola\STUBA\2roc\Letny\SIVVS\Project\ProjectXML\XmlWebForms\XmlWebForms\bin\System.Web.Razor.dll
+C:\D\Skola\STUBA\2roc\Letny\SIVVS\Project\ProjectXML\XmlWebForms\XmlWebForms\bin\System.Web.WebPages.Deployment.dll
+C:\D\Skola\STUBA\2roc\Letny\SIVVS\Project\ProjectXML\XmlWebForms\XmlWebForms\bin\System.Web.WebPages.dll
+C:\D\Skola\STUBA\2roc\Letny\SIVVS\Project\ProjectXML\XmlWebForms\XmlWebForms\bin\System.Web.WebPages.Razor.dll
+C:\D\Skola\STUBA\2roc\Letny\SIVVS\Project\ProjectXML\XmlWebForms\XmlWebForms\bin\WebGrease.dll
+C:\D\Skola\STUBA\2roc\Letny\SIVVS\Project\ProjectXML\XmlWebForms\XmlWebForms\bin\Newtonsoft.Json.xml
+C:\D\Skola\STUBA\2roc\Letny\SIVVS\Project\ProjectXML\XmlWebForms\XmlWebForms\bin\System.Web.Optimization.xml
+C:\D\Skola\STUBA\2roc\Letny\SIVVS\Project\ProjectXML\XmlWebForms\XmlWebForms\bin\System.Web.Optimization.Less.pdb
+C:\D\Skola\STUBA\2roc\Letny\SIVVS\Project\ProjectXML\XmlWebForms\XmlWebForms\bin\System.Web.Optimization.Less.xml
+C:\D\Skola\STUBA\2roc\Letny\SIVVS\Project\ProjectXML\XmlWebForms\XmlWebForms\bin\System.Web.Helpers.xml
+C:\D\Skola\STUBA\2roc\Letny\SIVVS\Project\ProjectXML\XmlWebForms\XmlWebForms\bin\System.Web.Mvc.xml
+C:\D\Skola\STUBA\2roc\Letny\SIVVS\Project\ProjectXML\XmlWebForms\XmlWebForms\bin\System.Web.Razor.xml
+C:\D\Skola\STUBA\2roc\Letny\SIVVS\Project\ProjectXML\XmlWebForms\XmlWebForms\bin\System.Web.WebPages.xml
+C:\D\Skola\STUBA\2roc\Letny\SIVVS\Project\ProjectXML\XmlWebForms\XmlWebForms\bin\System.Web.WebPages.Deployment.xml
+C:\D\Skola\STUBA\2roc\Letny\SIVVS\Project\ProjectXML\XmlWebForms\XmlWebForms\bin\System.Web.WebPages.Razor.xml
+C:\D\Skola\STUBA\2roc\Letny\SIVVS\Project\ProjectXML\XmlWebForms\XmlWebForms\obj\Debug\XmlWebForms.csprojResolveAssemblyReference.cache
+C:\D\Skola\STUBA\2roc\Letny\SIVVS\Project\ProjectXML\XmlWebForms\XmlWebForms\obj\Debug\XmlWebForms.dll
+C:\D\Skola\STUBA\2roc\Letny\SIVVS\Project\ProjectXML\XmlWebForms\XmlWebForms\obj\Debug\XmlWebForms.pdb

@@ -1,0 +1,18 @@
+<dotacia xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <nazovFirmy>kjh</nazovFirmy>
+  <pravnaForma>jkh</pravnaForma>
+  <ico>89</ico>
+  <dic>65</dic>
+  <telefon>4654</telefon>
+  <email>654</email>
+  <adresa>65</adresa>
+  <mesto>465465</mesto>
+  <okres>465</okres>
+  <kraj>4654</kraj>
+  <psc>65</psc>
+  <ziadanaSuma>6</ziadanaSuma>
+  <naklady>
+    <polozka>65</polozka>
+    <cena>5</cena>
+  </naklady>
+</dotacia>

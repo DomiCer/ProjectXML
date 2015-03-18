@@ -1,0 +1,48 @@
+INPUT.text {background-color:white;  font: bold 11pt Arial;}
+.cri, .nar, .cub, .cor, .rht, .bot { border-top:                0pt; }
+.cri, .nar, .cub, .cor, .rht, .bot, .bot12 { border-left:               0pt; }
+			.nar, .cub, .bot12,            .bot { border-right:              0pt; }
+            			      .rht       { border-bottom:             0pt; }
+.cri,             .cor, .rht       { border-right:  black solid 1pt; }
+.cri, .nar, .cub, .cor, .bot12, .bot { border-bottom: black solid 1pt; }
+.bot12 { border-top: black solid 1pt; }
+
+.ram_sml                     { border: black solid 1.0pt; }
+.ram_lrg                     { border: black solid 3.5pt; }
+
+.ram_all, .ram_top, .ram_bot { background: #E0EFC6; }
+.ram_all, .ram_top           { border-top:    black solid 1.5pt; }
+.ram_all, .ram_top, .ram_bot { border-left:   black solid 1.5pt; }
+.ram_all, .ram_top, .ram_bot { border-right:  black solid 1.5pt; }
+.ram_all,           .ram_bot { border-bottom: black solid 1.5pt; }
+.ram_right, .ram_tr, .ram_br, .ram_brx, .ram_rightx { border-right: black solid 1pt; }
+.ram_left { border-left: black solid 1pt; }
+.ram_tr, .ram_bottom, .ram_br ,.ram_brx, .ram_bottomx { border-bottom: black solid 1pt; }
+.ram_tr { border-top: black solid 1pt; }
+
+.text_big                                                        { font-size: 10pt; }
+           .text_mid, .text_mid2, .text_cis, .text_cub            { font-size:  9pt; }
+                                            .text_sml            { font-size:  8pt; }
+                                                       .text_tin { font-size:  7pt; }
+.text_big, .text_mid, .text_cis, .text_cub, .text_sml, .text_tin, .text_mid2 { font-family: "arial"; margin: 0pt; }
+                      .text_cis                                  { border: black solid 1pt; width: 11pt; }
+                                 .text_cub                       { border-right: black solid 1pt; border-top: black solid 1pt; }
+
+.head_lrg                                             { font-size: 36pt; }
+           .head_big                                  { font-size: 17pt; }
+                      .head_mid                       { font-size: 13pt; }
+                                 .head_sml            { font-size: 11pt; }
+.head_lrg, .head_big, .head_mid, .head_sml            { font-family: "arial"; margin: 0pt; }
+
+.input_vzor, .input_l, .input_r { background: #FFFFFF; width: 100%; height: 19pt; font-size: 13pt; }
+.input_vzor                     { letter-spacing: 6pt; font-family: "comic sans ms"; font-style: italic; border: 0pt; }
+             .input_l, .input_r { letter-spacing: 4pt; font-family: "arial"; }
+.input_vzor, .input_l           { text-align:  left; }
+                       .input_r { text-align: right; }
+
+.input_x, .input_nic, .input_nic2 , .input_ram { background: #FFFFFF; }
+.input_x                         { width: 10pt; height: 10pt; margin: 2pt 3pt 2pt 6pt; }
+          .input_nic             { width: 100%; height: 100%; border:             0pt; }
+          .input_nic2 { width: 100%; height: 20pt; border:             0pt; }
+                      .input_ram { width: 100%; height: 100%; border: black solid 1pt; }
+.input_x                         { font-family: "arial"; font-size: 8pt; font-weight: bold; text-align: center; }

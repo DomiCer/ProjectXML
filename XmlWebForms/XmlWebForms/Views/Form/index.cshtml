@@ -3,6 +3,9 @@
 @{
     ViewBag.Title = "index";
     Layout = "~\\Views\\Shared\\_Layout.cshtml";
+    var xmlResult = ViewBag.xml != null ? (string)ViewBag.xml : "";
+    var xslResult = ViewBag.xsl != null ? (string)ViewBag.xsl : "";
+    var xsdResult = ViewBag.xsd != null ? (string)ViewBag.xsd : "";
 }
 
 
@@ -24,9 +27,9 @@
         </span>
     }
     
-    @if (ViewBag.xml != null) { 
+    @if (ViewBag.xml != null)
+    { 
         <div>
-           @{ var xmlResult = (string)ViewBag.xml;}
             @xmlResult
         </div>
     }
@@ -36,7 +39,8 @@
 
 
 
-@using (Html.BeginForm()) {
+@using (Html.BeginForm())
+{
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 
@@ -220,20 +224,91 @@
     </fieldset>
     
     </fieldset>
+    <table>
+        <tr>
+            <td align="right">uri pre xsl</td>
+            <td><input type="text" style="width:100%;" width="100%" id="iXSLURI" value="http://dis-major/dppo.xslt"></td>
+            <td align="right">uri pre xsd</td>
+            <td><input type="text" style="width:100%;" width="100%" id="iXSDURI" value="http://dis-major/dppo.xsd"></td>
+        </tr>
+    </table>
         <table>
             <tr>
                 <td><input type="submit" name="ValidateXML" value="Validovať XML" /></td>
                 <td><input type="submit" name="Transform" value="Transformovať na Text" /></td>
+                 <td><input style="background-color: rgb(233, 243, 209);" onclick="signTheForm();" type="button" value="Podpísať" /></td>
             </tr>
         </table>
     
     
-    
+    <textarea id="iXSL" rows="5" style="width:100%; display:block" NAME="iXSL">@xslResult</textarea>
+    <textarea id="iXSD" rows="5" style="width:100%; display:block" NAME="iXSD">@xsdResult</textarea>
+    <textarea id="iXML" rows="5" style="width:100%;" NAME="iXML">@xmlResult</textarea>
+
+    <textarea id="taOut" rows="35" style="width:100%;"  name="taOut"></textarea>
+
+    <span id="spErr"></span><br>
+    <span id="divRES"></span><br>
+    <span id="divDPPO"></span><br>
+
 }
 
 
-
 <script type="text/javascript">
+
+    function signTheForm() {
+        var kontrolaKP = true;
+        //    checkForm();
+        //if (kontrolaKP != '') {
+        //    alert(kontrolaKP);
+        //    return;
+        //}
+
+        //var le = noLogicalError()
+        //if (le == false) {
+        //    alert("V dokumente sú logické chyby.");
+        //}
+
+        var xml = '<?xml version="1.0" encoding="windows-1250"?>' + storeTheForm();
+        var oXML = new ActiveXObject("DSig.XadesSigAtl");
+        var oXMLPlugin = new ActiveXObject("DSig.XmlPluginAtl");
+        var xsd = document.getElementById('iXSD').value;
+        var xsdURI = document.getElementById('iXSDURI').value;
+        var xsl = document.getElementById('iXSL').value;
+        var xslURI = document.getElementById('iXSLURI').value;
+
+
+        var obj = oXMLPlugin.CreateObject('objectId', 'Dotacie', xml, xsd, '', xsdURI, xsl, xslURI);
+        if (obj == null) {
+            document.getElementById('spErr').innerText = oXMLPlugin.ErrorMessage;
+            document.getElementById('divRES').style.display = "none";
+            document.getElementById('divDPPO').style.display = "";
+            return;
+        }
+
+        var addObj = oXML.AddObject(obj);
+        if (addObj != 0) {
+            document.getElementById('spErr').innerText = oXML.ErrorMessage;
+            document.getElementById('divRES').style.display = "none";
+            document.getElementById('divDPPO').style.display = "";
+            return;
+        }
+
+        var res = oXML.Sign('signatureId', 'sha256', 'urn:oid:1.3.158.36061701.1.2.1');
+        if (res == 0) {
+            document.getElementById('taOut').value = oXML.SignedXMLWithEnvelope;
+            document.getElementById('divDPPO').style.display = "none";
+            document.getElementById('divRES').style.display = "";
+            alert("Dokument bol úspešne podpísaný.");
+
+        }
+        else {
+            document.getElementById('spErr').innerText = oXML.ErrorMessage;
+            document.getElementById('divRES').style.display = "none";
+            document.getElementById('divDPPO').style.display = "";
+        }
+    }
+
 
     $(document).ready(function () {
         var iter = 0;

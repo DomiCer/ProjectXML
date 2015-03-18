@@ -1,0 +1,34 @@
+<html>
+	<head>
+		<META http-equiv="Content-Type" content="text/html; charset=windows-1250">
+		<title>---</title>
+		<script language="javaScript">
+			function fillInputsAndSubmit(typDPAndFdf) {
+				if(typDPAndFdf != null && typDPAndFdf.length == 2) {
+					window.document.forms['declOfTaxesForm'].elements['typDP'].value = typDPAndFdf[0];
+					window.document.forms['declOfTaxesForm'].elements['vysledokFdf'].value = typDPAndFdf[1];
+
+					window.document.forms['declOfTaxesForm'].submit();
+
+					window.close();
+				} else {
+					var errMsg = '';
+					
+					if(typDPAndFdf == null) {
+						errMsg = '\nPredany argument je null';
+					} else {
+						errMsg = '\nPredany argument (length): ' + typDPAndFdf.length;
+					}
+					
+					alert('Chyba pri predavani parametrov' + errMsg);
+				}
+			}
+		</script>
+	</head>
+	<body onload="fillInputsAndSubmit(window.dialogArguments)">
+		<form name="declOfTaxesForm" action="https://www.drsr.sk/priznania_root/priznanie.fdf" method="post">
+			<input type="hidden" name="typDP" value=""/>
+			<input type="hidden" name="vysledokFdf" value=""/>
+		</form>
+	</body>
+</html>
