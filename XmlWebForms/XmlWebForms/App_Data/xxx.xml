@@ -1,18 +1,22 @@
 <dotacia xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <nazovFirmy>kjh</nazovFirmy>
-  <pravnaForma>jkh</pravnaForma>
-  <ico>89</ico>
-  <dic>65</dic>
-  <telefon>4654</telefon>
-  <email>654</email>
-  <adresa>65</adresa>
-  <mesto>465465</mesto>
-  <okres>465</okres>
-  <kraj>4654</kraj>
-  <psc>65</psc>
-  <ziadanaSuma>6</ziadanaSuma>
+  <nazovFirmy>kjhkj</nazovFirmy>
+  <pravnaForma>9</pravnaForma>
+  <ico>87</ico>
+  <dic>89</dic>
+  <telefon>789</telefon>
+  <email>89</email>
+  <adresa>879</adresa>
+  <mesto>79</mesto>
+  <okres>879</okres>
+  <kraj>878</kraj>
+  <psc>9</psc>
+  <ziadanaSuma>34</ziadanaSuma>
   <naklady>
-    <polozka>65</polozka>
-    <cena>5</cena>
+    <polozka>89</polozka>
+    <cena>34</cena>
+  </naklady>
+  <naklady>
+    <polozka>89</polozka>
+    <cena>34</cena>
   </naklady>
 </dotacia>

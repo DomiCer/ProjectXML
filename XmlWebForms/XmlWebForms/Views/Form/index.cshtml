@@ -12,29 +12,26 @@
 
 @if (ViewBag.errors != null)
 { 
-     <div style="background: #F5DCCA; padding:10px; margin:10px;">
+     
        
-    @if ((bool)ViewBag.errors)
+    if ((bool)ViewBag.errors)
     {
-        <span style="color:red">
-            XML nie je Validné!
-        </span>
+        <div style="background: #F5DCCA; padding:10px; margin:10px;">
+            <span style="color:red">
+                XML nie je Validné!
+            </span>
+        </div>
     }
     else
     {
-        <span style="color:green">
-            XML je Validné!
-        </span>
-    }
-    
-    @if (ViewBag.xml != null)
-    { 
-        <div>
-            @xmlResult
+        <div style="background: #BCED91; padding:10px; margin:10px;">
+            <span style="color:green">
+                XML je Validné!
+            </span>
         </div>
     }
+    
 
-   </div>
 }
 
 
@@ -43,37 +40,36 @@
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
-
+    
     <fieldset>
         <legend>Dotácia na kultúru</legend>
         
         <table>
             <tr>
                 <td>
-        <div class="editor-label">
-            @Html.LabelFor(model => model.nazovFirmy)
-        </div>
-                    </td>
-                <td>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.nazovFirmy)
-            @Html.ValidationMessageFor(model => model.nazovFirmy)
-        </div>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.nazovFirmy)
+                    </div>
                 </td>
-                </tr>
-            <tr>
                 <td>
-        <div class="editor-label">
-            @Html.LabelFor(model => model.pravnaForma)
-        </div>
-                    </td>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.nazovFirmy)
+                        @Html.ValidationMessageFor(model => model.nazovFirmy)
+                    </div>
+                </td>
+                <td class="form-gap"></td>
                 <td>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.pravnaForma)
-            @Html.ValidationMessageFor(model => model.pravnaForma)
-        </div>
-                    </td>
-                </tr>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.pravnaForma)
+                    </div>
+                </td>
+                <td>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.pravnaForma)
+                        @Html.ValidationMessageFor(model => model.pravnaForma)
+                    </div>
+                </td>
+            </tr>
             <tr>
                 <td>
         <div class="editor-label">
@@ -86,9 +82,8 @@
             @Html.ValidationMessageFor(model => model.ico)
         </div>
                     </td>
-                </tr>
-            <tr>
-             <td>
+                <td class="form-gap"></td>
+                <td>
         <div class="editor-label">
             @Html.LabelFor(model => model.dic)
         </div>
@@ -100,6 +95,7 @@
         </div>
                     </td>
                 </tr>
+            
             <tr>
                 <td>
         <div class="editor-label">
@@ -112,60 +108,58 @@
             @Html.ValidationMessageFor(model => model.telefon)
         </div>
                     </td>
-                </tr>
-            <tr>
-                    <td>
+                <td class="form-gap"></td>
+                <td>
         <div class="editor-label">
             @Html.LabelFor(model => model.email)
         </div>
                         </td>
-                    <td>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.email)
-            @Html.ValidationMessageFor(model => model.email)
-        </div>
-                        </td>
-                </tr>
+                <td>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.email)
+                        @Html.ValidationMessageFor(model => model.email)
+                    </div>
+                </td>
+            </tr>
+            
             <tr>
                 <td>
         <div class="editor-label">
             @Html.LabelFor(model => model.adresa)
         </div>
                     </td>
-                    <td>
+                <td>
         <div class="editor-field">
             @Html.EditorFor(model => model.adresa)
             @Html.ValidationMessageFor(model => model.adresa)
         </div>
                 </td>
-                </tr>
-            <tr>
-                    <td>
+                <td class="form-gap"></td>
+                <td>
         <div class="editor-label">
             @Html.LabelFor(model => model.mesto)
         </div>
                     </td>
-                    <td>
+                <td>
         <div class="editor-field">
             @Html.EditorFor(model => model.mesto)
             @Html.ValidationMessageFor(model => model.mesto)
         </div>
                         </td>
-                    </tr>
+            </tr>
             <tr>
-            <td>
-        <div class="editor-label">
-            @Html.LabelFor(model => model.okres)
-        </div>
-                </td>
-            <td>
+                <td>
+            <div class="editor-label">
+                @Html.LabelFor(model => model.okres)
+            </div>
+                    </td>
+                <td>
         <div class="editor-field">
             @Html.EditorFor(model => model.okres)
             @Html.ValidationMessageFor(model => model.okres)
         </div>
                 </td>
-            </tr>
-            <tr>
+                <td class="form-gap"></td>
                 <td>
         <div class="editor-label">
             @Html.LabelFor(model => model.kraj)
@@ -177,75 +171,103 @@
             @Html.ValidationMessageFor(model => model.kraj)
         </div>
                     </td>
-                </tr>
-<tr>
-    <td>
-        <div class="editor-label">
-            @Html.LabelFor(model => model.psc)
-        </div>
-    </td>
-    <td>   
-         <div class="editor-field">
-            @Html.EditorFor(model => model.psc)
-            @Html.ValidationMessageFor(model => model.psc)
-        </div>
-    </td>
-</tr>
+            </tr>
+            <tr>
+                <td>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.psc)
+                    </div>
+                </td>
+                <td>   
+                     <div class="editor-field">
+                        @Html.EditorFor(model => model.psc)
+                        @Html.ValidationMessageFor(model => model.psc)
+                    </div>
+                </td>
+                <td class="table-gap-horizontal"></td>
+                <td><td/>
+                <td><td/>
+            </tr>
             
-<tr style="height:20px"><td></td></tr>                  
-<tr>
-    <td>
-        <div class="editor-label">
-            @Html.LabelFor(model => model.ziadanaSuma)
-        </div>
-    </td>
-    <td>
-         <div class="editor-field">
-            @Html.EditorFor(model => model.ziadanaSuma)
-            @Html.ValidationMessageFor(model => model.ziadanaSuma)
-        </div>
-    </td>
-</tr>
-</table>
+            <tr class="table-gap-vertical"><td></td></tr>                  
+            <tr>
+                <td>
+                    <div class="editor-label bold-label">
+                        @Html.LabelFor(model => model.ziadanaSuma)
+                    </div>
+                </td>
+                <td>
+                     <div class="editor-field">
+                        @Html.EditorFor(model => model.ziadanaSuma)
+                        @Html.ValidationMessageFor(model => model.ziadanaSuma)
+                    </div>
+                </td>
+                <td colspan="3"></td>
+            </tr>
+            <tr class="table-gap-vertical"><td></td></tr> 
+    </table>
 
         
-   
-    
-    
     <fieldset>
         <legend class="subLegend">Náklady</legend>
-        <div class="nakladyDiv">
-            <div class="nakladItem_0">
-            @Html.EditorFor(model => model.naklady)
-             </div>
-         </div>
-        <input type="button" id="add" value="pridat" /> 
-        <input type="button" id="remove" value="odstranit" /> 
-    </fieldset>
-    
-    </fieldset>
-    <table>
-        <tr>
-            <td align="right">uri pre xsl</td>
-            <td><input type="text" style="width:100%;" width="100%" id="iXSLURI" value="http://dis-major/dppo.xslt"></td>
-            <td align="right">uri pre xsd</td>
-            <td><input type="text" style="width:100%;" width="100%" id="iXSDURI" value="http://dis-major/dppo.xsd"></td>
-        </tr>
-    </table>
         <table>
             <tr>
-                <td><input type="submit" name="ValidateXML" value="Validovať XML" /></td>
-                <td><input type="submit" name="Transform" value="Transformovať na Text" /></td>
-                 <td><input style="background-color: rgb(233, 243, 209);" onclick="signTheForm();" type="button" value="Podpísať" /></td>
+                <td>
+                    <div class="nakladyDiv">
+                        <div id="nakladyItem_0">
+                            @Html.EditorFor(model => model.naklady)
+                         </div>
+                     </div>
+                </td>
+                @*<td class="table-gap-horizontal"></td>*@
+            <tr/>
+            <tr>
+                <td>
+                    <input type="button" id="add" value=" + " />
+                    <input type="button" id="remove" value=" - " />
+                </td>
             </tr>
+            <tr class="table-gap-vertical"><td></td></tr>
         </table>
+         
+    </fieldset>
     
+    </fieldset>
+    <table style="display:none">
+        <tr>
+            <td align="right">uri pre xsl</td>
+            <td><input type="text" style="width:100%;" width="100%" id="iXSLURI" value="http://dot-cer-koc/dotacie.xslt"></td>
+            <td align="right">uri pre xsd</td>
+            <td><input type="text" style="width:100%;" width="100%" id="iXSDURI" value="http://dot-cer-koc/dotacie.xsd"></td>
+        </tr>
+    </table>
+    <table>
+        <tr>
+            <td><input type="submit" name="ValidateXML" value="Validovať XML" /></td>
+            <td><input type="submit" name="Transform" value="Transformovať na Text" /></td>
+            <td><input onclick="signTheForm();" type="button" value="Podpísať" /></td>
+        </tr>
+        <tr>
+            <td>
+                <input id="chbViewSource" type="checkbox" name="viewSource" value="false"/>
+                <label for="chbViewSource">Zobraziť zdroje</label>
+            </td>
+        </tr>
+    </table>
     
-    <textarea id="iXSL" rows="5" style="width:100%; display:block" NAME="iXSL">@xslResult</textarea>
-    <textarea id="iXSD" rows="5" style="width:100%; display:block" NAME="iXSD">@xsdResult</textarea>
-    <textarea id="iXML" rows="5" style="width:100%;" NAME="iXML">@xmlResult</textarea>
-
-    <textarea id="taOut" rows="35" style="width:100%;"  name="taOut"></textarea>
+    <div id="textareas" style="display:none">
+        <label>XSLT:</label>
+        <textarea id="iXSL" rows="10" style="width:100%; display:block" NAME="iXSL">@xslResult</textarea>
+        <br/>
+        <label>XSD:</label>
+        <textarea id="iXSD" rows="10" style="width:100%; display:block" NAME="iXSD">@xsdResult</textarea>
+        <br/>
+        <label>XML:</label>
+        <textarea id="iXML" rows="10" style="width:100%;" NAME="iXML">@xmlResult</textarea>
+        <br/>
+        <label>Podpísaný dokument:</label>
+        <textarea id="taOut" rows="35" style="width:100%;"  name="taOut"></textarea>
+    </div>
 
     <span id="spErr"></span><br>
     <span id="divRES"></span><br>
@@ -258,17 +280,7 @@
 
     function signTheForm() {
         var kontrolaKP = true;
-        //    checkForm();
-        //if (kontrolaKP != '') {
-        //    alert(kontrolaKP);
-        //    return;
-        //}
-
-        //var le = noLogicalError()
-        //if (le == false) {
-        //    alert("V dokumente sú logické chyby.");
-        //}
-
+      
         var xml = '<?xml version="1.0" encoding="windows-1250"?>' + storeTheForm();
         var oXML = new ActiveXObject("DSig.XadesSigAtl");
         var oXMLPlugin = new ActiveXObject("DSig.XmlPluginAtl");
@@ -279,7 +291,8 @@
 
 
         var obj = oXMLPlugin.CreateObject('objectId', 'Dotacie', xml, xsd, '', xsdURI, xsl, xslURI);
-        if (obj == null) {
+        //var obj2 = oXMLPlugin.CreateObject('objectId2', 'Dotacie', xml, xsd, '', xsdURI, xsl, xslURI);
+        if (obj == null && addObj2 == null) {
             document.getElementById('spErr').innerText = oXMLPlugin.ErrorMessage;
             document.getElementById('divRES').style.display = "none";
             document.getElementById('divDPPO').style.display = "";
@@ -287,10 +300,14 @@
         }
 
         var addObj = oXML.AddObject(obj);
+        //alert(addObj);
+        //var addObj2 = oXML.AddObject(obj2);
+        //alert(addObj2);
         if (addObj != 0) {
             document.getElementById('spErr').innerText = oXML.ErrorMessage;
             document.getElementById('divRES').style.display = "none";
             document.getElementById('divDPPO').style.display = "";
+
             return;
         }
 
@@ -317,7 +334,7 @@
             iter++;
             $newBlockObj = $(newblock);
             //var newtext = newblock.replace("naklady[0]", "naklady[" + iter + "]").replace("naklady_0_", "naklady_"+iter+"_");
-            $newBlockObj.find('#nakladItem').attr("id", "nakladItem" + iter);
+            $newBlockObj.attr("id", "nakladyItem_" + iter);
 
             $newBlockObj.find('input').each(function () {
                 var obj = $(this)[0];
@@ -352,9 +369,23 @@
 
             });
 
-            $('.nakladyDiv').append($newBlockObj.html());
+            $('.nakladyDiv').append($newBlockObj);
            
         });
+        $('#remove').click(function () {
+            if (iter > 0) {
+                $('#nakladyItem_' + iter).remove();
+                iter--;
+            }
+        });
+        $('#chbViewSource').change(function () {
+            if (this.checked) {
+                $('#textareas').show();
+            }
+            else {
+                $('#textareas').hide();
+            }
+        })
     });
 
 </script>

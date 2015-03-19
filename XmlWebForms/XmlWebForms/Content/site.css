@@ -1,17 +1,30 @@
 ﻿body {
-
+    background-color:#ffffb2;
 }
 
 legend {
     font-size: 25px;
-color: #3F9929;
-font-weight: bold;
+    color: #3F9929;
+    font-weight: bold;
 }
 
 .subLegend {
-     font-size: 15px;
+     font-size: 20px;
+}
+
+
+.bold-label {
+    font-weight:bold;
 }
 
 td {
     padding: 5px;
+}
+
+.table-gap-horizontal {
+    width:50px;
+}
+
+.table-gap-vertical {
+    height:20px;
 }
