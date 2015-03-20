@@ -1,18 +1,22 @@
-<dotacia xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <nazovFirmy>jlkj</nazovFirmy>
-  <pravnaForma>jklj</pravnaForma>
-  <ico>890</ico>
-  <dic>809</dic>
-  <telefon>jlk;</telefon>
-  <email>jo</email>
-  <adresa>jkl</adresa>
-  <mesto>jlk</mesto>
-  <okres>jkl</okres>
-  <kraj>jkl</kraj>
-  <psc>890</psc>
-  <ziadanaSuma>890</ziadanaSuma>
+<dotacia xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <nazovFirmy>kjhkj</nazovFirmy>
+  <pravnaForma>9</pravnaForma>
+  <ico>87</ico>
+  <dic>89</dic>
+  <telefon>789</telefon>
+  <email>89</email>
+  <adresa>879</adresa>
+  <mesto>79</mesto>
+  <okres>879</okres>
+  <kraj>878</kraj>
+  <psc>9</psc>
+  <ziadanaSuma>34</ziadanaSuma>
   <naklady>
-    <polozka>jl</polozka>
-    <cena>809</cena>
+    <polozka>89</polozka>
+    <cena>34</cena>
+  </naklady>
+  <naklady>
+    <polozka>89</polozka>
+    <cena>34</cena>
   </naklady>
 </dotacia>

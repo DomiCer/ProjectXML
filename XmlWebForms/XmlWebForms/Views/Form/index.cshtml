@@ -236,9 +236,9 @@
     <table style="display:none">
         <tr>
             <td align="right">uri pre xsl</td>
-            <td><input type="text" style="width:100%;" width="100%" id="iXSLURI" value="http://dis-major/dppo.xslt"></td>
+            <td><input type="text" style="width:100%;" width="100%" id="iXSLURI" value="http://dot-cer-koc/dotacie.xslt"></td>
             <td align="right">uri pre xsd</td>
-            <td><input type="text" style="width:100%;" width="100%" id="iXSDURI" value="http://dis-major/dppo.xsd"></td>
+            <td><input type="text" style="width:100%;" width="100%" id="iXSDURI" value="http://dot-cer-koc/dotacie.xsd"></td>
         </tr>
     </table>
     <table>
@@ -265,7 +265,7 @@
         <label>XML:</label>
         <textarea id="iXML" rows="10" style="width:100%;" NAME="iXML">@xmlResult</textarea>
         <br/>
-        <label>Text:</label>
+        <label>Podpísaný dokument:</label>
         <textarea id="taOut" rows="35" style="width:100%;"  name="taOut"></textarea>
     </div>
 
@@ -280,17 +280,7 @@
 
     function signTheForm() {
         var kontrolaKP = true;
-        //    checkForm();
-        //if (kontrolaKP != '') {
-        //    alert(kontrolaKP);
-        //    return;
-        //}
-
-        //var le = noLogicalError()
-        //if (le == false) {
-        //    alert("V dokumente sú logické chyby.");
-        //}
-
+      
         var xml = '<?xml version="1.0" encoding="windows-1250"?>' + storeTheForm();
         var oXML = new ActiveXObject("DSig.XadesSigAtl");
         var oXMLPlugin = new ActiveXObject("DSig.XmlPluginAtl");
@@ -301,7 +291,8 @@
 
 
         var obj = oXMLPlugin.CreateObject('objectId', 'Dotacie', xml, xsd, '', xsdURI, xsl, xslURI);
-        if (obj == null) {
+        //var obj2 = oXMLPlugin.CreateObject('objectId2', 'Dotacie', xml, xsd, '', xsdURI, xsl, xslURI);
+        if (obj == null && addObj2 == null) {
             document.getElementById('spErr').innerText = oXMLPlugin.ErrorMessage;
             document.getElementById('divRES').style.display = "none";
             document.getElementById('divDPPO').style.display = "";
@@ -309,10 +300,14 @@
         }
 
         var addObj = oXML.AddObject(obj);
+        //alert(addObj);
+        //var addObj2 = oXML.AddObject(obj2);
+        //alert(addObj2);
         if (addObj != 0) {
             document.getElementById('spErr').innerText = oXML.ErrorMessage;
             document.getElementById('divRES').style.display = "none";
             document.getElementById('divDPPO').style.display = "";
+
             return;
         }
 

@@ -24,3 +24,16 @@ C:\AllMyDocs\FIIT\02_Ing\2_roc\LS\spracovanie informacii v podnikani a verejnej 
 C:\AllMyDocs\FIIT\02_Ing\2_roc\LS\spracovanie informacii v podnikani a verejnej sprave\ProjectXML\ProjectXML\XmlWebForms\XmlWebForms.Test\obj\Debug\XmlWebForms.Test.csprojResolveAssemblyReference.cache
 C:\AllMyDocs\FIIT\02_Ing\2_roc\LS\spracovanie informacii v podnikani a verejnej sprave\ProjectXML\ProjectXML\XmlWebForms\XmlWebForms.Test\obj\Debug\XmlWebForms.Test.dll
 C:\AllMyDocs\FIIT\02_Ing\2_roc\LS\spracovanie informacii v podnikani a verejnej sprave\ProjectXML\ProjectXML\XmlWebForms\XmlWebForms.Test\obj\Debug\XmlWebForms.Test.pdb
+C:\D\Skola\STUBA\2roc\Letny\SIVVS\Project\ProjectXML\XmlWebForms\XmlWebForms.Test\bin\Debug\XmlWebForms.Test.dll
+C:\D\Skola\STUBA\2roc\Letny\SIVVS\Project\ProjectXML\XmlWebForms\XmlWebForms.Test\bin\Debug\XmlWebForms.Test.pdb
+C:\D\Skola\STUBA\2roc\Letny\SIVVS\Project\ProjectXML\XmlWebForms\XmlWebForms.Test\bin\Debug\nunit.framework.dll
+C:\D\Skola\STUBA\2roc\Letny\SIVVS\Project\ProjectXML\XmlWebForms\XmlWebForms.Test\bin\Debug\XmlWebForms.dll
+C:\D\Skola\STUBA\2roc\Letny\SIVVS\Project\ProjectXML\XmlWebForms\XmlWebForms.Test\bin\Debug\System.Web.Mvc.dll
+C:\D\Skola\STUBA\2roc\Letny\SIVVS\Project\ProjectXML\XmlWebForms\XmlWebForms.Test\bin\Debug\System.Web.Optimization.dll
+C:\D\Skola\STUBA\2roc\Letny\SIVVS\Project\ProjectXML\XmlWebForms\XmlWebForms.Test\bin\Debug\XmlWebForms.pdb
+C:\D\Skola\STUBA\2roc\Letny\SIVVS\Project\ProjectXML\XmlWebForms\XmlWebForms.Test\bin\Debug\nunit.framework.xml
+C:\D\Skola\STUBA\2roc\Letny\SIVVS\Project\ProjectXML\XmlWebForms\XmlWebForms.Test\bin\Debug\System.Web.Mvc.xml
+C:\D\Skola\STUBA\2roc\Letny\SIVVS\Project\ProjectXML\XmlWebForms\XmlWebForms.Test\bin\Debug\System.Web.Optimization.xml
+C:\D\Skola\STUBA\2roc\Letny\SIVVS\Project\ProjectXML\XmlWebForms\XmlWebForms.Test\obj\Debug\XmlWebForms.Test.csprojResolveAssemblyReference.cache
+C:\D\Skola\STUBA\2roc\Letny\SIVVS\Project\ProjectXML\XmlWebForms\XmlWebForms.Test\obj\Debug\XmlWebForms.Test.dll
+C:\D\Skola\STUBA\2roc\Letny\SIVVS\Project\ProjectXML\XmlWebForms\XmlWebForms.Test\obj\Debug\XmlWebForms.Test.pdb
