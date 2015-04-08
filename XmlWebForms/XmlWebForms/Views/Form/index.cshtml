@@ -3,9 +3,11 @@
 @{
     ViewBag.Title = "index";
     Layout = "~\\Views\\Shared\\_Layout.cshtml";
-    var xmlResult = ViewBag.xml != null ? (string)ViewBag.xml : "";
-    var xslResult = ViewBag.xsl != null ? (string)ViewBag.xsl : "";
-    var xsdResult = ViewBag.xsd != null ? (string)ViewBag.xsd : "";
+    var xmlResult = ViewBag.xml != null ? (string)ViewBag.xml : string.Empty;
+    var xslResult = ViewBag.xsl != null ? (string)ViewBag.xsl : string.Empty;
+    var xsdResult = ViewBag.xsd != null ? (string)ViewBag.xsd : string.Empty;
+
+    var tsResult = ViewBag.tsXml != null ? (string)ViewBag.tsXml : string.Empty;
 }
 
 
@@ -27,6 +29,27 @@
         <div style="background: #BCED91; padding:10px; margin:10px;">
             <span style="color:green">
                 XML je Validné!
+            </span>
+        </div>
+    }
+ 
+}
+
+@if (ViewBag.tsErrors != null)
+{
+    if ((bool)ViewBag.tsErrors)
+    {
+        <div style="background: #F5DCCA; padding:10px; margin:10px;">
+            <span style="color:red">
+                Dokument sa nepodarilo opečiatkovať!
+            </span>
+        </div>
+    }
+    else
+    {
+        <div style="background: #BCED91; padding:10px; margin:10px;">
+            <span style="color:green">
+                Dokument bol opečiatkovaný :)
             </span>
         </div>
     }
@@ -246,6 +269,8 @@
             <td><input type="submit" name="ValidateXML" value="Validovať XML" /></td>
             <td><input type="submit" name="Transform" value="Transformovať na Text" /></td>
             <td><input onclick="signTheForm();" type="button" value="Podpísať" /></td>
+            <td><input type="submit" name="TimeStamp" value="Opečiatkovať" /></td>
+            
         </tr>
         <tr>
             <td>
@@ -267,6 +292,9 @@
         <br/>
         <label>Podpísaný dokument:</label>
         <textarea id="taOut" rows="35" style="width:100%;"  name="taOut"></textarea>
+        <br/>
+        <label>Podpísaný a opečiatkovaný dokument:</label>
+        <textarea id="tsXml" rows="35" style="width:100%;"  name="tsXml">@tsResult</textarea>
     </div>
 
     <span id="spErr"></span><br>
@@ -279,50 +307,71 @@
 <script type="text/javascript">
 
     function signTheForm() {
-        var kontrolaKP = true;
-      
-        var xml = '<?xml version="1.0" encoding="windows-1250"?>' + storeTheForm();
-        var oXML = new ActiveXObject("DSig.XadesSigAtl");
-        var oXMLPlugin = new ActiveXObject("DSig.XmlPluginAtl");
-        var xsd = document.getElementById('iXSD').value;
-        var xsdURI = document.getElementById('iXSDURI').value;
-        var xsl = document.getElementById('iXSL').value;
-        var xslURI = document.getElementById('iXSLURI').value;
-
-
-        var obj = oXMLPlugin.CreateObject('objectId', 'Dotacie', xml, xsd, '', xsdURI, xsl, xslURI);
-        //var obj2 = oXMLPlugin.CreateObject('objectId2', 'Dotacie', xml, xsd, '', xsdURI, xsl, xslURI);
-        if (obj == null && addObj2 == null) {
-            document.getElementById('spErr').innerText = oXMLPlugin.ErrorMessage;
-            document.getElementById('divRES').style.display = "none";
-            document.getElementById('divDPPO').style.display = "";
-            return;
+        
+        if (document.getElementById('iXML').value == null || document.getElementById('iXML').value == "")
+        {
+            alert("Najprv treba XML zvalidovať!");
         }
+        else
+        {
+            var xml = '<?xml version="1.0" encoding="windows-1250"?>' + storeTheForm();
+            var oXML = new ActiveXObject("DSig.XadesSigAtl");
+            var oXMLPlugin = new ActiveXObject("DSig.XmlPluginAtl");
+            var xsd = document.getElementById('iXSD').value;
+            var xsdURI = document.getElementById('iXSDURI').value;
+            var xsl = document.getElementById('iXSL').value;
+            var xslURI = document.getElementById('iXSLURI').value;
 
-        var addObj = oXML.AddObject(obj);
-        //alert(addObj);
-        //var addObj2 = oXML.AddObject(obj2);
-        //alert(addObj2);
-        if (addObj != 0) {
-            document.getElementById('spErr').innerText = oXML.ErrorMessage;
-            document.getElementById('divRES').style.display = "none";
-            document.getElementById('divDPPO').style.display = "";
 
-            return;
-        }
+            var obj = oXMLPlugin.CreateObject('objectId', 'Dotacie', xml, xsd, '', xsdURI, xsl, xslURI);
+            //var obj2 = oXMLPlugin.CreateObject('objectId2', 'Dotacie', xml, xsd, '', xsdURI, xsl, xslURI);
+            if (obj == null) {
+                document.getElementById('spErr').innerText = oXMLPlugin.ErrorMessage;
+                document.getElementById('divRES').style.display = "none";
+                document.getElementById('divDPPO').style.display = "";
+                return;
+            }
 
-        var res = oXML.Sign('signatureId', 'sha256', 'urn:oid:1.3.158.36061701.1.2.1');
-        if (res == 0) {
-            document.getElementById('taOut').value = oXML.SignedXMLWithEnvelope;
-            document.getElementById('divDPPO').style.display = "none";
-            document.getElementById('divRES').style.display = "";
-            alert("Dokument bol úspešne podpísaný.");
+            var addObj = oXML.AddObject(obj);
+            //alert(addObj);
+            //var addObj2 = oXML.AddObject(obj2);
+            //alert(addObj2);
+            if (addObj != 0) {
+                document.getElementById('spErr').innerText = oXML.ErrorMessage;
+                document.getElementById('divRES').style.display = "none";
+                document.getElementById('divDPPO').style.display = "";
 
-        }
-        else {
-            document.getElementById('spErr').innerText = oXML.ErrorMessage;
-            document.getElementById('divRES').style.display = "none";
-            document.getElementById('divDPPO').style.display = "";
+                return;
+            }
+
+            var res = oXML.Sign('signatureId', 'sha256', 'urn:oid:1.3.158.36061701.1.2.1');
+            if (res == 0) {
+                document.getElementById('taOut').value = oXML.SignedXMLWithEnvelope;
+                document.getElementById('divDPPO').style.display = "none";
+                document.getElementById('divRES').style.display = "";
+                alert("Dokument bol úspešne podpísaný.");
+
+                //save document
+                $.ajax({
+                    url: '@Url.Action("SaveSignedDocument", "Form")',
+                    type: 'POST',
+                    dataType: 'json',
+                    // we set cache: false because GET requests are often cached by browsers
+                    // IE is particularly aggressive in that respect
+                    cache: false,
+                    data: { id: oXML.SignedXmlWithEnvelopeBase64 },
+                    success: {},
+                    error: function () {
+                        alert("Podpísaný dokument sa nepodarilo uložť.");
+                    }
+                });
+
+            }
+            else {
+                document.getElementById('spErr').innerText = oXML.ErrorMessage;
+                document.getElementById('divRES').style.display = "none";
+                document.getElementById('divDPPO').style.display = "";
+            }
         }
     }
 
