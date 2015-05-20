@@ -22,8 +22,9 @@ namespace Overovac.Verification
 
         public bool Validate() {
             ExistSignatureAtributes();
+            CheckSignatureValueID();
             ExistSignedInfoAtributes();
-            CheckSignedValueID();
+           
 
             return NoError;
         }
@@ -36,9 +37,7 @@ namespace Overovac.Verification
         XmlNode signatureNode { get; set; }
 
         private void ExistSignatureAtributes()
-        {
-            bool noError = true;
-           
+        {  
             signatureNode = XmlDoc.GetElementsByTagName("ds:Signature").Count == 0 ? null : XmlDoc.GetElementsByTagName("ds:Signature").Item(0);
             if (signatureNode == null)
                 NoError = false;
@@ -55,19 +54,27 @@ namespace Overovac.Verification
         }
 
         private void ExistSignedInfoAtributes()
-        {
-            bool noError = true;
-             if (signatureNode.SelectSingleNode("//ds:Signature//ds:SignedInfo", Nsmgr) == null)
-                    noError = false;
+        {  
+            if (signatureNode.SelectSingleNode("//ds:Signature//ds:SignedInfo", Nsmgr) == null)
+                    NoError = false;
             else
               signedInfo = signatureNode.SelectSingleNode("//ds:Signature//ds:SignedInfo", Nsmgr);
               if (signedInfo == null)
-                  noError = false;
-              if (!noError)
-                  NoError = noError;
+                  NoError = false;
         }
 
-        private void CheckSignedValueID() {
+        private void CountSignedInfoReferencies() 
+        {
+             //ds:KeyInfo 
+            var keyInfoRef = signedInfo.SelectNodes("//ds:SignedInfo//ds:Reference[@name='http://www.w3.org/2000/09/xmldsig#Object']", Nsmgr);
+
+           
+            
+
+        }
+
+        private void CheckSignatureValueID()
+        {
             // signatureValue
             if (signatureNode.SelectSingleNode("//ds:Signature//ds:SignatureValue", Nsmgr) == null)
                 NoError = false;
