@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XmlWebForms.Test", "XmlWebF
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Overovac", "Overovac\Overovac.csproj", "{1BAD2117-64C6-4EA5-A803-610EFE4D29A7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Overovac.Test", "Overovac.Test\Overovac.Test.csproj", "{498BFA77-F8B8-4EF2-BC6B-E4173644CBEB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +27,10 @@ Global
 		{1BAD2117-64C6-4EA5-A803-610EFE4D29A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1BAD2117-64C6-4EA5-A803-610EFE4D29A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1BAD2117-64C6-4EA5-A803-610EFE4D29A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{498BFA77-F8B8-4EF2-BC6B-E4173644CBEB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{498BFA77-F8B8-4EF2-BC6B-E4173644CBEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{498BFA77-F8B8-4EF2-BC6B-E4173644CBEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{498BFA77-F8B8-4EF2-BC6B-E4173644CBEB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

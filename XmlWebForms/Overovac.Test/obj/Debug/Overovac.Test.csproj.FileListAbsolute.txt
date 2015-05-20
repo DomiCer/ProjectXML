@@ -1,0 +1,5 @@
+C:\D\Skola\STUBA\2roc\Letny\SIPVS\Project\ProjectXML\XmlWebForms\Overovac.Test\bin\Debug\Overovac.Test.dll
+C:\D\Skola\STUBA\2roc\Letny\SIPVS\Project\ProjectXML\XmlWebForms\Overovac.Test\bin\Debug\Overovac.Test.pdb
+C:\D\Skola\STUBA\2roc\Letny\SIPVS\Project\ProjectXML\XmlWebForms\Overovac.Test\obj\Debug\Overovac.Test.csprojResolveAssemblyReference.cache
+C:\D\Skola\STUBA\2roc\Letny\SIPVS\Project\ProjectXML\XmlWebForms\Overovac.Test\obj\Debug\Overovac.Test.dll
+C:\D\Skola\STUBA\2roc\Letny\SIPVS\Project\ProjectXML\XmlWebForms\Overovac.Test\obj\Debug\Overovac.Test.pdb

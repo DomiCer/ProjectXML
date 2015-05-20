@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App\App.cs" />
     <Compile Include="Overovac.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -52,6 +53,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Verification\CoreValidation.cs" />
+    <Compile Include="Verification\DataEnvelope.cs" />
+    <Compile Include="Verification\TimeStamp.cs" />
+    <Compile Include="Verification\Verification.cs" />
+    <Compile Include="Verification\XmlSignature.cs" />
     <EmbeddedResource Include="Overovac.resx">
       <DependentUpon>Overovac.cs</DependentUpon>
     </EmbeddedResource>
