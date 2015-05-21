@@ -67,6 +67,7 @@
             this.btnOverit.TabIndex = 3;
             this.btnOverit.Text = "Overiť";
             this.btnOverit.UseVisualStyleBackColor = true;
+            this.btnOverit.Click += new System.EventHandler(this.btnOverit_Click);
             // 
             // btnBrowse
             // 
