@@ -20,12 +20,19 @@ namespace Overovac.Verification
 
         // Core validation (podľa špecifikácie XML Signature)
         // overenie hodnoty podpisu ds:SignatureValue a referencií v ds:SignedInfo:
-        //	dereferencovanie URI, kanonikalizácia referencovaných ds:Manifest elementov a overenie hodnôt odtlačkov ds:DigestValue,
-        //	kanonikalizácia ds:SignedInfo a overenie hodnoty ds:SignatureValue pomocou pripojeného podpisového certifikátu v ds:KeyInfo, 
+        //	Part1: dereferencovanie URI, kanonikalizácia referencovaných ds:Manifest elementov a overenie hodnôt odtlačkov ds:DigestValue,
+        //	Part2: kanonikalizácia ds:SignedInfo a overenie hodnoty ds:SignatureValue pomocou pripojeného podpisového certifikátu v ds:KeyInfo, 
 
         public bool Validate() {
-            //todo
+            Part1();
+            Part2();
             return true;
         }
+
+        private void Part1()
+        { }
+
+        private void Part2()
+        { }
     }
 }
