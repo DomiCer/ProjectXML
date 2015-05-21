@@ -13,78 +13,124 @@ namespace Overovac.Verification.XmlSignatureNS
         {
             XmlDoc = xmlDoc;
             Nsmgr = mngr;
-            signedInfo = null;
-            signatureValue = null;
-            signatureNode = null;           
+            SignedInfo = null;
+            SignatureValue = null;
+            SignatureNode = signatureNode;
+                //XmlDoc.GetElementsByTagName("ds:Signature").Count == 0 ? null : XmlDoc.GetElementsByTagName("ds:Signature").Item(0);
+            NoError = true;
         }
 
         private XmlDocument XmlDoc { get; set; }
         private XmlNamespaceManager Nsmgr { get; set; }
-        XmlNode signedInfo { get; set; }
-        XmlNode signatureValue { get; set; }
-        XmlNode signatureNode { get; set; }
+        XmlNode SignedInfo { get; set; }
+        XmlNode SignatureValue { get; set; }
+        XmlNode SignatureNode { get; set; }
+        string SignatureID { get; set; }
         private bool NoError { get; set; }
 
         public bool Validate() {
             ExistSignatureAtributes();
             CheckSignatureValueID();
             ExistSignedInfoAtributes();
+            CountSignedInfoReferencies();
             return true;
         }
 
         private void ExistSignatureAtributes()
-        {
-            signatureNode = XmlDoc.GetElementsByTagName("ds:Signature").Count == 0 ? null : XmlDoc.GetElementsByTagName("ds:Signature").Item(0);
-            if (signatureNode == null)
+        {   
+            if (SignatureNode == null)
                 NoError = false;
             else
             {
-                if (signatureNode.Attributes.GetNamedItem("Id") == null && string.IsNullOrEmpty(signatureNode.Attributes.GetNamedItem("Id").Value))
+                if (SignatureNode.Attributes.GetNamedItem("Id") == null && string.IsNullOrEmpty(SignatureNode.Attributes.GetNamedItem("Id").Value))
                     NoError = false;
 
-                if (signatureNode.Attributes.GetNamedItem("xmlns:ds") == null && string.IsNullOrEmpty(signatureNode.Attributes.GetNamedItem("xmlns:ds").Value))
+                if (SignatureNode.Attributes.GetNamedItem("xmlns:ds") == null && string.IsNullOrEmpty(SignatureNode.Attributes.GetNamedItem("xmlns:ds").Value))
                     NoError = false;
 
             }
+            //SET SIGNATURE ID
+            SignatureID = SignatureNode.Attributes.GetNamedItem("Id").Value;
+
+            if (!NoError)
+                throw new Exception("chyba atributov ExistSignatureAtributes");
 
         }
 
         private void ExistSignedInfoAtributes()
         {
-            if (signatureNode.SelectSingleNode("//ds:Signature//ds:SignedInfo", Nsmgr) == null)
+            if (SignatureNode.SelectSingleNode("//ds:Signature//ds:SignedInfo", Nsmgr) == null)
                 NoError = false;
             else
-                signedInfo = signatureNode.SelectSingleNode("//ds:Signature//ds:SignedInfo", Nsmgr);
-            if (signedInfo == null)
+                SignedInfo = SignatureNode.SelectSingleNode("//ds:Signature//ds:SignedInfo", Nsmgr);
+            if (SignedInfo == null)
                 NoError = false;
+            if (!NoError)
+                throw new Exception("chyba ExistSignedInfoAtributes");
         }
 
         private void CountSignedInfoReferencies()
         {
             //ds:KeyInfo 
-            NoError = signedInfo.SelectNodes("//ds:SignedInfo//ds:Reference[@type='"+StaticListOtherElements.ReferenceTypeKeyinfo+"']", Nsmgr).Count == 0 ? false : true;
-
+            NoError = SignedInfo.SelectNodes("ds:Reference[@Type='" + StaticListOtherElements.ReferenceTypeKeyinfo + "']", Nsmgr).Count == 0 
+                        &&
+                       SignedInfo.SelectNodes("ds:Reference[@Id='" + StaticListOtherElements.GetReferenceTypeKeyinfoID(SignatureID) + "']", Nsmgr).Count == 0 
+                       ? false : true;
+            if (!NoError)
+                throw new Exception("chyba CountSignedInfoReferencies-KeyInfo");
+            
             //ds:SignatureProperties
-            NoError = signedInfo.SelectNodes("//ds:SignedInfo//ds:Reference[@type='" + StaticListOtherElements.ReferenceTypeDsSignatureProperties + "']", Nsmgr).Count == 0 ? false : true;
-
+            NoError = SignedInfo.SelectNodes("ds:Reference[@Type='" + StaticListOtherElements.ReferenceTypeDsSignatureProperties + "']", Nsmgr).Count == 0
+                        &&
+                       SignedInfo.SelectNodes("ds:Reference[@Id='" + StaticListOtherElements.GetReferenceTypeDsSignaturePropertiesID(SignatureID) + "']", Nsmgr).Count == 0 
+                       ? false : true;
+            if (!NoError)
+                throw new Exception("chyba CountSignedInfoReferencies-ds:SignatureProperties");
+            
             //xades:SignatureProperties
-            NoError = signedInfo.SelectNodes("//ds:SignedInfo//ds:Reference[@type='" + StaticListOtherElements.ReferenceTypeXadesSignatureProperties + "']", Nsmgr).Count == 0 ? false : true;
+            NoError = SignedInfo.SelectNodes("ds:Reference[@Type='" + StaticListOtherElements.ReferenceTypeXadesSignatureProperties + "']", Nsmgr).Count == 0
+                        &&
+                       SignedInfo.SelectNodes("ds:Reference[@Id='" + StaticListOtherElements.GetReferenceTypeXadesSignaturePropertiesID(SignatureID) + "']", Nsmgr).Count == 0 
+                       ? false : true;
+            if (!NoError)
+                throw new Exception("chyba CountSignedInfoReferencies-xades:SignatureProperties");
+            
+            //manifest
+            NoError = SignedInfo.SelectNodes("ds:Reference[@Type='" + StaticListOtherElements.ReferenceTypeManifet + "']", Nsmgr).Count == 0 ? false : true;
+            if (!NoError)
+                throw new Exception("chyba CountSignedInfoReferencies-manifest");
 
-            //xades:SignatureProperties
-            NoError = signedInfo.SelectNodes("//ds:SignedInfo//ds:Reference[@type='" + StaticListOtherElements.ReferenceTypeManifet + "']", Nsmgr).Count == 0 ? false : true;
+            var manifests = SignedInfo.SelectNodes("ds:Reference[@Type='" + StaticListOtherElements.ReferenceTypeManifet + "']", Nsmgr);
+
+            for (int i = 0; i < manifests.Count; i++)
+            {
+                var dataObjectFormat = XmlDoc.GetElementsByTagName("xades:DataObjectFormat");
+                if(dataObjectFormat.Count == 1){
+                    if (dataObjectFormat.Item(0).Attributes.GetNamedItem("ObjectReferenc").Value != manifests[i].Attributes.GetNamedItem("Id").Value)
+                    {
+                        NoError = false;
+                        throw new Exception("Referencia na Manifest neodkazuje na DataObjectFormat");
+                    }
+
+                }
+            }
+
         }
 
         private void CheckSignatureValueID()
         {
             // signatureValue
-            if (signatureNode.SelectSingleNode("//ds:Signature//ds:SignatureValue", Nsmgr) == null)
+            if (SignatureNode.SelectSingleNode("ds:SignatureValue", Nsmgr) == null)
                 NoError = false;
             else
             {
-                signatureValue = signatureNode.SelectSingleNode("//ds:Signature//ds:SignatureValue", Nsmgr);
-                if (signatureValue.Attributes.GetNamedItem("Id") == null && string.IsNullOrEmpty(signatureValue.Attributes.GetNamedItem("Id").Value))
+                SignatureValue = SignatureNode.SelectSingleNode("ds:SignatureValue", Nsmgr);
+                if (SignatureValue.Attributes.GetNamedItem("Id") == null && string.IsNullOrEmpty(SignatureValue.Attributes.GetNamedItem("Id").Value))
                     NoError = false;
             }
+
+            if (!NoError)
+                throw new Exception("chyba CheckSignatureValueID");
 
         }
     

@@ -32,6 +32,9 @@ namespace Overovac.Verification
                 NoError = false;
             if (XmlDoc.FirstChild.Attributes.GetNamedItem("xmlns:xzep") == null && XmlDoc.FirstChild.Attributes.GetNamedItem("xmlns:ds") == null)
                 NoError = false;
+
+            if (XmlDoc.FirstChild.Attributes.GetNamedItem("xmlns:xzep").Value != "http://www.ditec.sk/ep/signature_formats/xades_zep/v1.0" || XmlDoc.FirstChild.Attributes.GetNamedItem("xmlns:ds").Value != "http://www.w3.org/2000/09/xmldsig#")
+                NoError = false;
             if (!NoError)
                 throw new Exception("chyba atributov xmlns:xzep alebo xmlns:ds v DataEnvelope");
             

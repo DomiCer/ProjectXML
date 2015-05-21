@@ -42,7 +42,21 @@ namespace Overovac
             }
         }
 
-         
+        
+        public static string GetReferenceTypeKeyinfoID(string signatureID){
+            return string.Format("Reference{0}KeyInfo", signatureID);
+        }
+
+
+        public static string GetReferenceTypeDsSignaturePropertiesID(string signatureID)
+        {
+            return string.Format("Reference{0}SignatureProperties", signatureID);
+        }
+
+        public static string GetReferenceTypeXadesSignaturePropertiesID(string signatureID)
+        {
+            return string.Format("Reference{0}SignedProperties", signatureID);
+        }
 
     }
 }

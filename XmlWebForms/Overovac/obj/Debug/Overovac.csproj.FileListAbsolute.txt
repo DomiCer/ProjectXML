@@ -1,0 +1,9 @@
+C:\D\Skola\STUBA\2roc\Letny\SIPVS\Project\ProjectXML\XmlWebForms\Overovac\bin\Debug\Overovac.exe.config
+C:\D\Skola\STUBA\2roc\Letny\SIPVS\Project\ProjectXML\XmlWebForms\Overovac\bin\Debug\Overovac.exe
+C:\D\Skola\STUBA\2roc\Letny\SIPVS\Project\ProjectXML\XmlWebForms\Overovac\bin\Debug\Overovac.pdb
+C:\D\Skola\STUBA\2roc\Letny\SIPVS\Project\ProjectXML\XmlWebForms\Overovac\obj\Debug\Overovac.csprojResolveAssemblyReference.cache
+C:\D\Skola\STUBA\2roc\Letny\SIPVS\Project\ProjectXML\XmlWebForms\Overovac\obj\Debug\Overovac.Overovac.resources
+C:\D\Skola\STUBA\2roc\Letny\SIPVS\Project\ProjectXML\XmlWebForms\Overovac\obj\Debug\Overovac.Properties.Resources.resources
+C:\D\Skola\STUBA\2roc\Letny\SIPVS\Project\ProjectXML\XmlWebForms\Overovac\obj\Debug\Overovac.csproj.GenerateResource.Cache
+C:\D\Skola\STUBA\2roc\Letny\SIPVS\Project\ProjectXML\XmlWebForms\Overovac\obj\Debug\Overovac.exe
+C:\D\Skola\STUBA\2roc\Letny\SIPVS\Project\ProjectXML\XmlWebForms\Overovac\obj\Debug\Overovac.pdb
