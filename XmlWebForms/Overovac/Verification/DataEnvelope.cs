@@ -14,24 +14,27 @@ namespace Overovac.Verification
         {
             XmlDoc = xmlDoc;
             NSMngr = mngr;
+            NoError = true;
         }
 
         public bool Validate() {
-            return ExistRootElementAtributes();
+            ExistRootElementAtributes();
+            return NoError;
         }
 
         private XmlDocument XmlDoc { get; set; }
         private XmlNamespaceManager NSMngr { get; set; }
         private bool NoError { get; set; }
         
-        private bool ExistRootElementAtributes()
-        {
-            
+        private void ExistRootElementAtributes()
+        {   
             if (XmlDoc.FirstChild.Attributes.Count < 2)
                 NoError = false;
             if (XmlDoc.FirstChild.Attributes.GetNamedItem("xmlns:xzep") == null && XmlDoc.FirstChild.Attributes.GetNamedItem("xmlns:ds") == null)
                 NoError = false;
-            return NoError;
+            if (!NoError)
+                throw new Exception("chyba atributov xmlns:xzep alebo xmlns:ds v DataEnvelope");
+            
         }
     }
 }
