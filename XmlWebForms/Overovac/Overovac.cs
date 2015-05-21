@@ -52,7 +52,7 @@ namespace Overovac
             {
                 var verif = new Verification.Verification(XmlDoc, NSMngr);                
                 txtLog.Text = string.Join("\n", verif.Validate().ToArray()); 
-                txtLog.Text += "Hotovo , vsetko OK :)";
+                txtLog.Text += "\n Hotovo , vsetko OK :)";
             }
             catch (Exception ex)
             {
