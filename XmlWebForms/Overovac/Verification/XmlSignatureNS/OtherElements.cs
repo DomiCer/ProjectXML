@@ -62,11 +62,16 @@ namespace Overovac.Verification.XmlSignatureNS
         private void CountSignedInfoReferencies()
         {
             //ds:KeyInfo 
-            var keyInfoRef = signedInfo.SelectNodes("//ds:SignedInfo//ds:Reference[@name='http://www.w3.org/2000/09/xmldsig#Object']", Nsmgr);
+            NoError = signedInfo.SelectNodes("//ds:SignedInfo//ds:Reference[@type='"+StaticListOtherElements.ReferenceTypeKeyinfo+"']", Nsmgr).Count == 0 ? false : true;
 
+            //ds:SignatureProperties
+            NoError = signedInfo.SelectNodes("//ds:SignedInfo//ds:Reference[@type='" + StaticListOtherElements.ReferenceTypeDsSignatureProperties + "']", Nsmgr).Count == 0 ? false : true;
 
+            //xades:SignatureProperties
+            NoError = signedInfo.SelectNodes("//ds:SignedInfo//ds:Reference[@type='" + StaticListOtherElements.ReferenceTypeXadesSignatureProperties + "']", Nsmgr).Count == 0 ? false : true;
 
-
+            //xades:SignatureProperties
+            NoError = signedInfo.SelectNodes("//ds:SignedInfo//ds:Reference[@type='" + StaticListOtherElements.ReferenceTypeManifet + "']", Nsmgr).Count == 0 ? false : true;
         }
 
         private void CheckSignatureValueID()

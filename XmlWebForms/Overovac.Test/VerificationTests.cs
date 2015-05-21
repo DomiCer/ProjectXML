@@ -5,16 +5,13 @@ using System.Xml;
 namespace Overovac.Test
 {
     [TestClass]
-    public class VerificationTests
+    public class VerificationTests: TestBase
     {
         public VerificationTests() {
             noError = true;
-            baseUrl = AppDomain.CurrentDomain.BaseDirectory.Replace("Overovac.Test\\bin\\Debug", "Inputs\\");
              XmlDoc = new XmlDocument();
         }
-        public bool noError { get; set; }
-        public string baseUrl { get; set; }
-        XmlDocument XmlDoc { get; set; }
+    
 
 
         [TestMethod]

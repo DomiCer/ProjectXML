@@ -53,7 +53,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StaticList\StaticList.cs" />
+    <Compile Include="StaticList\StaticListOtherElements.cs" />
     <Compile Include="Verification\CertificateValidity.cs" />
     <Compile Include="Verification\XmlSignatureNS\CoreValidation.cs" />
     <Compile Include="Verification\DataEnvelope.cs" />
