@@ -16,10 +16,12 @@ namespace Overovac.Verification
         {
             XmlDoc = xmlDoc;
             NSMngr = mngr;
-            XmlNamespaceManager nsmgr = new XmlNamespaceManager(XmlDoc.NameTable);
-            nsmgr.AddNamespace("ds", "http://www.w3.org/2000/09/xmldsig#");
-         
         }
+
+        // Core validation (podľa špecifikácie XML Signature)
+        // overenie hodnoty podpisu ds:SignatureValue a referencií v ds:SignedInfo:
+        //	dereferencovanie URI, kanonikalizácia referencovaných ds:Manifest elementov a overenie hodnôt odtlačkov ds:DigestValue,
+        //	kanonikalizácia ds:SignedInfo a overenie hodnoty ds:SignatureValue pomocou pripojeného podpisového certifikátu v ds:KeyInfo, 
 
         public bool Validate() {
             //todo
