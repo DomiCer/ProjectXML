@@ -58,5 +58,10 @@ namespace Overovac
             return string.Format("Reference{0}SignedProperties", signatureID);
         }
 
+        public static string GetReferenceTypeManifestID(string referenceURI)
+        {
+            return string.Format("Reference{0}", referenceURI);
+        }
+
     }
 }
