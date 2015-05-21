@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
+using Overovac.Verification;
 
 namespace Overovac
 {
@@ -33,6 +34,9 @@ namespace Overovac
             {
                 this.txtFile.Text = ofd.FileName;
                 XmlDoc.Load(ofd.FileName);
+                var verif = new Verification.Verification(XmlDoc);
+                txtLog.Text = string.Join("\n", verif.Validate().ToArray()); 
+
             }
         }
 
