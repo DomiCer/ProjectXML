@@ -16,3 +16,4 @@ C:\D\Skola\STUBA\2roc\Letny\SIPVS\Project\ProjectXML\XmlWebForms\Overovac\obj\De
 C:\D\Skola\STUBA\2roc\Letny\SIPVS\Project\ProjectXML\XmlWebForms\Overovac\obj\Debug\Overovac.Overovac.resources
 C:\D\Skola\STUBA\2roc\Letny\SIPVS\Project\ProjectXML\XmlWebForms\Overovac\obj\Debug\Overovac.Properties.Resources.resources
 C:\D\Skola\STUBA\2roc\Letny\SIPVS\Project\ProjectXML\XmlWebForms\Overovac\obj\Debug\Overovac.csproj.GenerateResource.Cache
+C:\AllMyDocs\FIIT\02_Ing\2_roc\LS\spracovanie informacii v podnikani a verejnej sprave\ProjectXML\ProjectXML\XmlWebForms\Overovac\bin\Debug\BouncyCastle.Crypto.dll

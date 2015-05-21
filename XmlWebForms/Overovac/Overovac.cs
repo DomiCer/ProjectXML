@@ -23,7 +23,7 @@ namespace Overovac
         {
             InitializeComponent();
             XmlDoc = new XmlDocument();
-            
+            XmlDoc.PreserveWhitespace = true;
         }
                 
         private void btnBrowse_Click(object sender, EventArgs e)

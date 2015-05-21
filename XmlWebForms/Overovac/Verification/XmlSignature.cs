@@ -28,7 +28,8 @@ namespace Overovac.Verification
             SigMethCanMeth(SignatureNode);
             TransformsDigestMeth(SignatureNode);
             NoError = new CoreValidation(XmlDoc,SignatureNode, Nsmgr).Validate();
-            NoError = new OtherElements(XmlDoc,SignatureNode, Nsmgr).Validate();
+            //odkomentovat
+            //NoError = new OtherElements(XmlDoc,SignatureNode, Nsmgr).Validate();
 
             return NoError;
         }
@@ -74,6 +75,8 @@ namespace Overovac.Verification
         //3. skontrolovat ds:DigestMethod - musi obs. atribut Algorihtm, hodnota jedna z URI v tab. v kapitole 4.5
         public void TransformsDigestMeth(XmlNode signatureNode)
         {
+            NoError = false;
+
             XmlNode signedInfoNode = signatureNode.SelectSingleNode("//" + Nsmgr.LookupPrefix(Overovac.XADES_NAMESPACE) + ":SignedInfo", Nsmgr);
                 
             XmlNodeList references = signedInfoNode.SelectNodes(Nsmgr.LookupPrefix(Overovac.XADES_NAMESPACE) + ":Reference", Nsmgr);
