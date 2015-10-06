@@ -23,7 +23,7 @@ namespace Overovac
         {
             InitializeComponent();
             XmlDoc = new XmlDocument();
-            
+            XmlDoc.PreserveWhitespace = true;
         }
                 
         private void btnBrowse_Click(object sender, EventArgs e)
@@ -38,6 +38,8 @@ namespace Overovac
                 this.txtFile.Text = ofd.FileName;
                 XmlDoc.Load(ofd.FileName);
 
+                string[] splitted = ofd.FileName.Split(new string[]{"/","\\"},StringSplitOptions.None);
+                txtLog.Text = "Nacitany subor " + splitted[splitted.Length-1] +"\r\n";
                 NSMngr = new XmlNamespaceManager(XmlDoc.NameTable);
                 
                 string nsPrefix = XmlDoc.GetPrefixOfNamespace(XADES_NAMESPACE);
@@ -51,7 +53,7 @@ namespace Overovac
             try
             {
                 var verif = new Verification.Verification(XmlDoc, NSMngr);                
-                txtLog.Text = string.Join("\n", verif.Validate().ToArray()); 
+                txtLog.Text += string.Join("\n", verif.Validate().ToArray()); 
                 txtLog.Text += "\n Hotovo , vsetko OK :)";
             }
             catch (Exception ex)

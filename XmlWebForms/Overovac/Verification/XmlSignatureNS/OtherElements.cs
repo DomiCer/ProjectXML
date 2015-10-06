@@ -37,6 +37,7 @@ namespace Overovac.Verification.XmlSignatureNS
             CountSignedInfoReferencies();
             CheckKeyInfoContent();
             CheckSignaturePropertiesContent();
+            OverManifestTransformDigest();
             return true;
         }
 
@@ -180,7 +181,7 @@ namespace Overovac.Verification.XmlSignatureNS
                     {
                         if (!issuer.Contains(item.Trim()))
                         {   
-                            throw new Exception("chyba v dsX509 issuerName - neobsahuje: " + item);
+                            //throw new Exception("chyba v dsX509 issuerName - neobsahuje: " + item);
                         }
                     }
                     
@@ -218,6 +219,45 @@ namespace Overovac.Verification.XmlSignatureNS
 
         }
 
+        public void OverManifestTransformDigest()
+        {
+            NoError = false;
+
+            
+            XmlNodeList manifests = XmlDoc.SelectNodes("//" + Nsmgr.LookupPrefix(Overovac.XADES_NAMESPACE) + ":Manifest", Nsmgr);
+            foreach (XmlNode manNode in manifests)
+            {
+                if (manNode.Attributes.GetNamedItem("Id") == null && string.IsNullOrEmpty(manNode.Attributes.GetNamedItem("Id").Value))
+                    throw new Exception("chyba Id v ds:manifest");
+                
+                if(manNode.SelectSingleNode("ds:Reference", Nsmgr).Attributes.GetNamedItem("Type").Value != "http://www.w3.org/2000/09/xmldsig#Object")
+                    throw new Exception("chybny Type v ds:manifest");
+
+                if(manNode.SelectNodes("ds:Reference", Nsmgr).Count != 1)
+                    throw new Exception("viac ako jedna referencia na ds:object v ds:manifest");
+
+                XmlNode transformNode = manNode.SelectSingleNode("ds:Reference/"+Nsmgr.LookupPrefix(Overovac.XADES_NAMESPACE) + ":Transforms/" + Nsmgr.LookupPrefix(Overovac.XADES_NAMESPACE) + ":Transform", Nsmgr);
+                XmlNode digestMethNode = manNode.SelectSingleNode("ds:Reference/" + Nsmgr.LookupPrefix(Overovac.XADES_NAMESPACE) + ":DigestMethod", Nsmgr);
+
+                XmlAttribute transformNode_alg = (XmlAttribute)transformNode.Attributes.GetNamedItem("Algorithm");
+                XmlAttribute digestMethNode_alg = (XmlAttribute)digestMethNode.Attributes.GetNamedItem("Algorithm");
+
+                if (transformNode_alg != null && digestMethNode_alg != null && transformNode_alg.Value != null && digestMethNode_alg.Value != null)
+                {
+                    if (transformNode_alg.Value.Equals(StaticListDominika.CAN_METH_ALG) && StaticListDominika.MOZNE_ALG_DIG_ODTLACKU.Contains(digestMethNode_alg.Value))
+                        NoError = true;
+                    else
+                    {
+                        NoError = false;
+                        break;
+                    }
+                }
+            }
+
+            if (!NoError)
+                throw new Exception("CHYBA: kontrola obsahu ds:Transforms a ds:DigestMethod vo všetkých referenciách v ds:SignedInfo - nepodporovany algoritmus podla XADES-ZEP");
+
+        }
 
 
     }

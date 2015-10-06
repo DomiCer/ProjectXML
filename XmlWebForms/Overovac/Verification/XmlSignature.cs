@@ -25,9 +25,14 @@ namespace Overovac.Verification
         }
 
         public bool Validate() {
+
+            //2.
             SigMethCanMeth(SignatureNode);
-            TransformsDigestMeth();
+            //3.
+            TransformsDigestMeth(SignatureNode);
+            //4.
             NoError = new CoreValidation(XmlDoc,SignatureNode, Nsmgr).Validate();
+            //5.
             NoError = new OtherElements(XmlDoc,SignatureNode, Nsmgr).Validate();
 
             return NoError;
@@ -40,10 +45,13 @@ namespace Overovac.Verification
         //2. CanonicalizationMethod musi obs. Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315". Len toto jedno uri je povolene.
         public void  SigMethCanMeth(XmlNode signatureNode)
         {
+            NoError = false;
             try
             {
-                XmlNode signatureMethodNode = signatureNode.SelectSingleNode("//" + Nsmgr.LookupPrefix(Overovac.XADES_NAMESPACE) + ":SignatureMethod", Nsmgr);
-                XmlNode canMethodNode = signatureNode.SelectSingleNode("//" + Nsmgr.LookupPrefix(Overovac.XADES_NAMESPACE) + ":CanonicalizationMethod", Nsmgr);
+                XmlNode signedInfoNode = signatureNode.SelectSingleNode(Nsmgr.LookupPrefix(Overovac.XADES_NAMESPACE) + ":SignedInfo", Nsmgr);
+            
+                XmlNode signatureMethodNode = signedInfoNode.SelectSingleNode(Nsmgr.LookupPrefix(Overovac.XADES_NAMESPACE) + ":SignatureMethod", Nsmgr);
+                XmlNode canMethodNode = signedInfoNode.SelectSingleNode(Nsmgr.LookupPrefix(Overovac.XADES_NAMESPACE) + ":CanonicalizationMethod", Nsmgr);
 
                 XmlAttribute signatureMethodNode_alg = (XmlAttribute)signatureMethodNode.Attributes.GetNamedItem("Algorithm");
                 XmlAttribute canMethodNode_alg = (XmlAttribute)canMethodNode.Attributes.GetNamedItem("Algorithm");
@@ -54,7 +62,7 @@ namespace Overovac.Verification
                         NoError = true;
                 }
                 if(!NoError)
-                    throw new Exception("CHYBA: kontrola obsahu ds:SignatureMethod a ds:CanonicalizationMethod");
+                    throw new Exception("CHYBA: kontrola obsahu ds:SignatureMethod a ds:CanonicalizationMethod: nepodporovany algoritmus podla XADES-ZEP");
             }
             catch (Exception ex)
             {
@@ -69,11 +77,35 @@ namespace Overovac.Verification
         //1. vytiahnut vsetky ds:Reference z ds:SignedInfo. Pre kazdu:
         //2. skontrolovat ds:Transforms/ds:Transform - musi obs. atribut Algorihtm, hodnota jedna z URI v tab. v kapitole 4.5
         //3. skontrolovat ds:DigestMethod - musi obs. atribut Algorihtm, hodnota jedna z URI v tab. v kapitole 4.5
-        public void TransformsDigestMeth()
+        public void TransformsDigestMeth(XmlNode signatureNode)
         {
-            
+            NoError = false;
+
+            XmlNode signedInfoNode = signatureNode.SelectSingleNode("//" + Nsmgr.LookupPrefix(Overovac.XADES_NAMESPACE) + ":SignedInfo", Nsmgr);
+                
+            XmlNodeList references = signedInfoNode.SelectNodes(Nsmgr.LookupPrefix(Overovac.XADES_NAMESPACE) + ":Reference", Nsmgr);
+            foreach (XmlNode refNode in references)
+            {
+                XmlNode transformNode = refNode.SelectSingleNode(Nsmgr.LookupPrefix(Overovac.XADES_NAMESPACE) + ":Transforms/" + Nsmgr.LookupPrefix(Overovac.XADES_NAMESPACE) + ":Transform", Nsmgr);
+                XmlNode digestMethNode = refNode.SelectSingleNode(Nsmgr.LookupPrefix(Overovac.XADES_NAMESPACE) + ":DigestMethod", Nsmgr);
+
+                XmlAttribute transformNode_alg = (XmlAttribute)transformNode.Attributes.GetNamedItem("Algorithm");
+                XmlAttribute digestMethNode_alg = (XmlAttribute)digestMethNode.Attributes.GetNamedItem("Algorithm");
+
+                if (transformNode_alg != null && digestMethNode_alg != null && transformNode_alg.Value != null && digestMethNode_alg.Value != null)
+                {
+                    if (transformNode_alg.Value.Equals(StaticListDominika.CAN_METH_ALG) && StaticListDominika.MOZNE_ALG_DIG_ODTLACKU.Contains(digestMethNode_alg.Value))
+                        NoError = true;
+                    else
+                    {
+                        NoError = false;
+                        break;
+                    }
+                }
+            }
+
             if (!NoError)
-                    throw new Exception("CHYBA: kontrola obsahu ds:Transforms a ds:DigestMethod vo všetkých referenciách v ds:SignedInfo");
+                    throw new Exception("CHYBA: kontrola obsahu ds:Transforms a ds:DigestMethod vo všetkých referenciách v ds:SignedInfo - nepodporovany algoritmus podla XADES-ZEP");
             
         }
 
